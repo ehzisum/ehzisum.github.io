@@ -6,15 +6,15 @@
   <meta name="keywords" content="">
   <meta name="description" content="卡瓦 | isum">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="description" content="123456789">
+<meta name="description" content="自行车v拜年">
 <meta property="og:type" content="article">
-<meta property="og:title" content="卡瓦">
-<meta property="og:url" content="https://ehzisum.github.io/2024/04/26/%E5%8D%A1%E7%93%A6/index.html">
+<meta property="og:title" content="test">
+<meta property="og:url" content="https://ehzisum.github.io/2024/04/26/test/index.html">
 <meta property="og:site_name" content="isum">
-<meta property="og:description" content="123456789">
+<meta property="og:description" content="自行车v拜年">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2024-04-26T04:48:28.000Z">
-<meta property="article:modified_time" content="2024-04-26T04:49:41.055Z">
+<meta property="article:published_time" content="2024-04-26T14:58:12.000Z">
+<meta property="article:modified_time" content="2024-04-26T14:58:42.941Z">
 <meta property="article:author" content="isum">
 <meta name="twitter:card" content="summary">
 
@@ -38,6 +38,8 @@
 <script src="//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js"></script>
 
 
+
+<script src="//cdn.jsdelivr.net/npm/jquery.cookie@1.4.1/jquery.cookie.min.js" ></script>
 
 <script src="/js/iconfont.js?v=1.1.0" ></script>
 
@@ -238,6 +240,17 @@
         </span>
         
         
+        <span class="top-comment" title="跳转至评论区">
+            <a href="#comments">
+                评论:<span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </a>
+        </span>
+        
     </div>
     
     <div class="toc-ref">
@@ -269,22 +282,25 @@
 
 
 
-    <div id="comments">
-<script>
-{
-    const comments = document.getElementById('comments');
-    const script = document.createElement('script');
-    script.src = 'https://utteranc.es/client.js';
-    script.setAttribute('repo', "ehzisum.github.io");
-    script.setAttribute('issue-term', "pathname");
-    script.setAttribute('theme', "github-light");
-    script.setAttribute('label', "question");
-    script.setAttribute('crossorigin', 'anonymous');
-    script.setAttribute('async', '');
-    comments.appendChild(script)
-}
+    <div id="comments"></div>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+
+<script type="text/javascript">
+    $.getScript('/js/gitalk.js', function () {
+        var gitalk = new Gitalk({
+            clientID: '3730732a738faf14fdef',
+            clientSecret: '4b7d5f3ee2f01c82c5a658dab63ca47202db57d9',
+            repo: 'ehzisum.github.io',
+            owner: 'ehzisum',
+            admin: ['ehzisum'],
+            id: decodeURI(location.pathname),
+            distractionFreeMode: 'true',
+            language: 'zh-CN',
+            perPage: parseInt('10',10)
+        })
+        gitalk.render('comments')
+    })
 </script>
-</div>
 
 
 
