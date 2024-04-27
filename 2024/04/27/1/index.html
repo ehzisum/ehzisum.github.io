@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>test | isum</title>
-  <meta name="keywords" content=" test , test1 ">
-  <meta name="description" content="test | isum">
+  <title>isum</title>
+  <meta name="keywords" content="">
+  <meta name="description" content="isum">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="test">
 <meta property="og:type" content="website">
@@ -257,36 +257,17 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-test" class="article article-type-post" itemscope itemprop="blogPost">
-    
-        <h1 class="article-title">test</h1>
+        <article id="post-1" class="article article-type-post" itemscope itemprop="blogPost">
     
     <div class="article-meta">
         
         
         
-        <span class="book">
-            <i class="iconfont icon-category"></i>
-            
-            
-            <a  data-rel="知识">知识</a>
-            
-        </span>
-        
-        
-        <span class="tag">
-            <i class="iconfont icon-tag"></i>
-            
-            <a class="color5">test</a>
-            
-            <a class="color1">test1</a>
-            
-        </span>
         
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2024-04-27 08:08:08'>2024-04-26 22:58</time>
+            发布时间 : <time class="date" title='最后更新: 2024-04-27 08:37:26'>2024-04-27 08:26</time>
         
     </div>
     <div class="article-meta">
@@ -319,7 +300,7 @@
     
     <div class="toc-ref">
     
-        
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#DC-1"><span class="toc-text">DC-1</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E7%A1%AE%E5%AE%9A%E6%B4%BB%E8%B7%83%E4%B8%BB%E6%9C%BA-192-168-1-103"><span class="toc-text">1.确定活跃主机 192.168.1.103</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E7%AB%AF%E5%8F%A3%E6%89%AB%E6%8F%8F"><span class="toc-text">2.端口扫描</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E6%9C%8D%E5%8A%A1%E6%8E%A2%E9%92%88"><span class="toc-text">3.服务探针</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-web%E6%B8%97%E9%80%8F"><span class="toc-text">4.web渗透</span></a></li></ol></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -335,7 +316,28 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>自行车v拜年</p>
+        <h1 id="DC-1"><a href="#DC-1" class="headerlink" title="DC-1"></a>DC-1</h1><p>2024.4.24-</p>
+<hr>
+<h3 id="1-确定活跃主机-192-168-1-103"><a href="#1-确定活跃主机-192-168-1-103" class="headerlink" title="1.确定活跃主机 192.168.1.103"></a>1.确定活跃主机 192.168.1.103</h3><p><img src="/1/Untitled.png" alt="？？？"></p>
+<h3 id="2-端口扫描"><a href="#2-端口扫描" class="headerlink" title="2.端口扫描"></a>2.端口扫描</h3><p><img src="/DC-1%206243ecf34f304f0cac1918748045a826/Untitled%201.png" alt="Untitled"></p>
+<h3 id="3-服务探针"><a href="#3-服务探针" class="headerlink" title="3.服务探针"></a>3.服务探针</h3><p>┌──(root💀kali)-[&#x2F;home&#x2F;isum]<br>└─# nmap -sV -A 192.168.1.103<br>Starting Nmap 7.94SVN ( <a target="_blank" rel="noopener" href="https://nmap.org/">https://nmap.org</a> ) at 2024-04-24 20:15 CST<br>Nmap scan report for 192.168.1.103<br>Host is up (0.0012s latency).<br>Not shown: 997 closed tcp ports (reset)<br>PORT    STATE SERVICE VERSION<br>22&#x2F;tcp  open  ssh     OpenSSH 6.0p1 Debian 4+deb7u7 (protocol 2.0)<br>| ssh-hostkey:<br>|   1024 c4:d6:59:e6:77:4c:22:7a:96:16:60:67:8b:42:48:8f (DSA)<br>|   2048 11:82:fe:53:4e:dc:5b:32:7f:44:64:82:75:7d:d0:a0 (RSA)<br>|_  256 3d:aa:98:5c:87:af:ea:84:b8:23:68:8d:b9:05:5f:d8 (ECDSA)<br>80&#x2F;tcp  open  http    Apache httpd 2.2.22 ((Debian))<br>|_http-title: Welcome to Drupal Site | Drupal Site<br>|<em>http-server-header: Apache&#x2F;2.2.22 (Debian)<br>|http-generator: Drupal 7 (<a target="_blank" rel="noopener" href="http://drupal.org/">http://drupal.org</a>)<br>| http-robots.txt: 36 disallowed entries (15 shown)<br>| &#x2F;includes&#x2F; &#x2F;misc&#x2F; &#x2F;modules&#x2F; &#x2F;profiles&#x2F; &#x2F;scripts&#x2F;<br>| &#x2F;themes&#x2F; &#x2F;CHANGELOG.txt &#x2F;cron.php &#x2F;INSTALL.mysql.txt<br>| &#x2F;INSTALL.pgsql.txt &#x2F;INSTALL.sqlite.txt &#x2F;install.php &#x2F;INSTALL.txt<br>|&#x2F;LICENSE.txt &#x2F;MAINTAINERS.txt<br>111&#x2F;tcp open  rpcbind 2-4 (RPC #100000)<br>| rpcinfo:<br>|   program version    port&#x2F;proto  service<br>|   100000  2,3,4        111&#x2F;tcp   rpcbind<br>|   100000  2,3,4        111&#x2F;udp   rpcbind<br>|   100000  3,4          111&#x2F;tcp6  rpcbind<br>|   100000  3,4          111&#x2F;udp6  rpcbind<br>|   100024  1          38110&#x2F;udp6  status<br>|   100024  1          43901&#x2F;tcp6  status<br>|   100024  1          47282&#x2F;udp   status<br>|</em>  100024  1          48132&#x2F;tcp   status<br>MAC Address: 00:0C:29:FD:39:82 (VMware)<br>Device type: general purpose<br>Running: Linux 3.X<br>OS CPE: cpe:&#x2F;o:linux:linux_kernel:3<br>OS details: Linux 3.2 - 3.16<br>Network Distance: 1 hop<br>Service Info: OS: Linux; CPE: cpe:&#x2F;o:linux:linux_kernel</p>
+<p>TRACEROUTE<br>HOP RTT     ADDRESS<br>1   1.18 ms 192.168.1.103</p>
+<p>OS and Service detection performed. Please report any incorrect results at <a target="_blank" rel="noopener" href="https://nmap.org/submit/">https://nmap.org/submit/</a> .<br>Nmap done: 1 IP address (1 host up) scanned in 28.22 seconds</p>
+<p><img src="/DC-1%206243ecf34f304f0cac1918748045a826/Untitled%202.png" alt="Untitled"></p>
+<p><strong>（密码暴利破解工具Hydra（海德拉））</strong></p>
+<p><img src="/DC-1%206243ecf34f304f0cac1918748045a826/Untitled%203.png" alt="Untitled"></p>
+<h3 id="4-web渗透"><a href="#4-web渗透" class="headerlink" title="4.web渗透"></a>4.web渗透</h3><p><img src="/DC-1%206243ecf34f304f0cac1918748045a826/Untitled%204.png" alt="Untitled"></p>
+<p><img src="/DC-1%206243ecf34f304f0cac1918748045a826/Untitled%205.png" alt="Untitled"></p>
+<p><img src="/DC-1%206243ecf34f304f0cac1918748045a826/Untitled%206.png" alt="Untitled"></p>
+<p><img src="/DC-1%206243ecf34f304f0cac1918748045a826/Untitled%207.png" alt="Untitled"></p>
+<p><img src="/DC-1%206243ecf34f304f0cac1918748045a826/Untitled%208.png" alt="Untitled"></p>
+<p><img src="/DC-1%206243ecf34f304f0cac1918748045a826/Untitled%209.png" alt="Untitled"></p>
+<p><img src="/DC-1%206243ecf34f304f0cac1918748045a826/Untitled%2010.png" alt="Untitled"></p>
+<p><img src="/DC-1%206243ecf34f304f0cac1918748045a826/Untitled%2011.png" alt="Untitled"></p>
+<p><img src="/DC-1%206243ecf34f304f0cac1918748045a826/Untitled%2012.png" alt="Untitled"></p>
+<p><img src="/DC-1%206243ecf34f304f0cac1918748045a826/Untitled%2013.png" alt="Untitled"></p>
+<p><img src="/DC-1%206243ecf34f304f0cac1918748045a826/Untitled%2014.png" alt="Untitled"></p>
+<p><img src="/DC-1%206243ecf34f304f0cac1918748045a826/Untitled%2015.png" alt="Untitled"></p>
 
       
        <hr><span style="font-style: italic;color: gray;"> 梦里小镇落雨，开花，起风，挂霜，甚至扬起烤红薯的香气，每个墙角都能听见人们的说笑声。 </span>
