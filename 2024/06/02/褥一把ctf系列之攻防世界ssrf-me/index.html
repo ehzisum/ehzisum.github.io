@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Hello World | isum</title>
-  <meta name="keywords" content=" hexo ">
-  <meta name="description" content="Hello World | isum">
+  <title>褥一把ctf系列之攻防世界ssrf-me | isum</title>
+  <meta name="keywords" content=" ssrf ">
+  <meta name="description" content="褥一把ctf系列之攻防世界ssrf-me | isum">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="还没有">
 <meta property="og:type" content="website">
@@ -270,9 +270,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-褥一把ctf系列之攻防世界ssrf-me" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">Hello World</h1>
+        <h1 class="article-title">褥一把ctf系列之攻防世界ssrf-me</h1>
     
     <div class="article-meta">
         
@@ -282,7 +282,7 @@
             <i class="iconfont icon-category"></i>
             
             
-            <a  data-rel="洪秀全">洪秀全</a>
+            <a  data-rel="刷题o比赛">刷题o比赛</a>
             
         </span>
         
@@ -290,14 +290,14 @@
         <span class="tag">
             <i class="iconfont icon-tag"></i>
             
-            <a class="color5">hexo</a>
+            <a class="color5">ssrf</a>
             
         </span>
         
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2024-05-29 22:35:28'>2024-04-26 11:03</time>
+            发布时间 : <time class="date" title='最后更新: 2024-06-02 22:50:13'>2024-06-02 22:43</time>
         
     </div>
     <div class="article-meta">
@@ -330,7 +330,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Quick-Start"><span class="toc-text">Quick Start</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Create-a-new-post-page"><span class="toc-text">Create a new post&#x2F;page</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Run-server"><span class="toc-text">Run server</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Generate-static-files"><span class="toc-text">Generate static files</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Deploy-to-remote-sites"><span class="toc-text">Deploy to remote sites</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E3%80%81wp"><span class="toc-text">一、wp</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93"><span class="toc-text">二、知识点总结</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -346,23 +346,79 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post-page"><a href="#Create-a-new-post-page" class="headerlink" title="Create a new post&#x2F;page"></a>Create a new post&#x2F;page</h3><pre><code class="bash">$ hexo new &quot;PostName&quot;
-$ hexo new page &quot;PageName&quot;
-</code></pre>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><pre><code class="bash">$ hexo server --port==8000
-#开启访问（默认端口4000，`ctrl + c` 关闭），查看帮助（hexo server -help）
-</code></pre>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><pre><code class="bash">$ hexo generate
-#生成静态页面至public目录
-</code></pre>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><pre><code class="bash">$ hexo deploy
-</code></pre>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+        <h3 id="一、wp"><a href="#一、wp" class="headerlink" title="一、wp"></a>一、wp</h3><pre><code class="php">抄一个别人的wp在这里：
+1.URL双重编码
+先来说第一种方式，简单粗暴，但很多wp没有解释清楚为什么这种编码可以绕过。
+这里涉及到浏览器及URL编码解码过程。我们可以本地写一个简单的ssrf漏洞测试文件进行测试：
+首先明确一个前提：服务器在接收到HTTP请求后会对其进行一次URL解码，
+而file://协议和gopher://协议一样，在服务器发送请求前又会进行一次URL解码。
+先分析GET方法，使用GET方法请求时浏览器并不会对请求参数编码，所以浏览器写fla%67提交到服务器后，
+经过一次解码得到flag，后端检测不通过。而浏览器请求fla%2567（对%67二次编码），
+服务器一次解码得到fla%67，检测通过。然后再传给file协议时，在发送前再次解码，得到flag，成功找到文件。
+然后分析POST请求：在使用HTML表单提交数据时，其Content-Type值默认为application/x-www-form-urlencoded，
+表示表单的数据会以URL编码的形式进行传输。当然还有另一种multipart/form-data，这种类型一般用于文件上传或传输二进制数据。
+所以当我们在浏览器中输入flag时，它会默认对特殊字符编码一次再发送给服务器，见下图。而服务器和处理GET请求一样，还是做了两次解码操作。
+所以这就是为什么在浏览器采用POST请求file:///fla%67可以绕过的原因（因为发送给服务器之前已经编码为fla%2567）。
+所以如果我们直接用burp的话，记得要两次编码才行（因为省去了浏览器的自动编码）。
+2.Apache虚拟站点+任意命令执行
+这部分是查看官方WP后测试总结的。网站指纹显示Apache中间件，那么我们可以尝试查看一下Apache的配置文件。
+/etc/apache2/apache2.conf、/etc/apache2/sites-enabled/000-default.conf
+前者是Apache的全局配置文件，这个应该都比较熟悉了。主要了解下后者：sites-enabled这个目录包含了启用的虚拟主机配置文件的符号链接。
+在 Ubuntu 中，通过将虚拟主机配置文件的符号链接从 sites-available/ 目录复制到 sites-enabled/ 目录来启用虚拟主机。
+而sites-available这个目录包含了可用的虚拟主机配置文件。每个配置文件对应一个虚拟主机，用于定义不同域名或主机的网站配置。
+另外Apache还有一个配置文件：/etc/apache2/ports.conf用于查看Apache2服务监听的端口号。
+我们发现还存在一个端口号为47852的虚拟主机，根目录为/var/www/htmlssrf123123，
+于是查看下该网站的源代码：意外发现这里是php一句话，但是由于exec执行命令并不输出结果，所以需要将执行结果带外传输。
+那么我们可以执行cat /fla? &gt; /tmp/f2ag将结果写入到f2ag文件中，然后再file协议读取。
+PS：几种不同的命令执行函数的结果回显对比如下
+另外还要解决如何向该页面发送post数据的问题，也即如何将一个post请求包装到当前http请求中。
+这里很自然的想到ssrf中的gopher协议，通过gopher协议可以传送任意的TCP数据流。但要按照其协议格式包裹数据（不熟悉的可以再回顾一下）。脚本如下：
 
+import urllib.parse
+payload =\
+&quot;&quot;&quot;POST /index.php HTTP/1.1
+Host: 127.0.0.1:47852
+Content-Length: 25
+Content-Type: application/x-www-form-urlencoded
+
+cmd=cat /fla? &gt; /tmp/f2ag
+&quot;&quot;&quot;  
+
+#注意后面一定要有回车，回车结尾表示http请求结束
+tmp = urllib.parse.quote(payload)
+new = tmp.replace(&#39;%0A&#39;,&#39;%0D%0A&#39;)
+result = &#39;gopher://127.0.0.1:47852/&#39;+&#39;_&#39;+new
+result = urllib.parse.quote(result)
+print(result)       # 这里因为是GET\POST 请求所以要进行两次url编码
+然后顺理成章的拿到flag，不过需要注意一点，上面的脚本已经经过了二次编码了，所以可以直接放在burp下用，如果是放到浏览器form表单中用，反而又被编码了一次会导致无法识别协议内容造成写入失败。
+</code></pre>
+<h3 id="二、知识点总结"><a href="#二、知识点总结" class="headerlink" title="二、知识点总结"></a>二、知识点总结</h3><p>1.$_GET[]、$_POST[]、$_FILES[]、$_COOKIE[]、$_SESSION[]</p>
+<pre><code class="html">&lt;input type=&quot;file&quot; name=&quot;file&quot;&gt;
+
+&lt;input type=&quot;submit&quot; name=&quot;submit&quot;&gt;
+
+当表单中包含 &lt;input type=&quot;file&quot;&gt; 元素并且该表单被提交时，上传的文件的信息就会被存储在 $_FILES 数组中
+</code></pre>
+<p>2.本题验证码获取</p>
+<img src="/2024/06/02/%E8%A4%A5%E4%B8%80%E6%8A%8Actf%E7%B3%BB%E5%88%97%E4%B9%8B%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8Cssrf-me/1.png" class="">
+
+<pre><code class="php">&lt;?php
+$m=1000;
+$captcha=58;//$captcha不能设为0，“0b6b93”在进行宽松的比较时会发生类型强制转换为0
+while($captcha!=&quot;e84dd4&quot;)&#123;
+    $captcha=substr(md5($m), -6, 6);
+    $m++;
+&#125;
+$m-=1;
+echo$m;
+</code></pre>
+<p>3.url编码</p>
+<p>payload文本格式会对编码产生影响，特别是在gopher这种一大段的数据包编码时</p>
+<p>wp里的url编码解码细节</p>
+<p>4.Apache配置</p>
+<p>&#x2F;etc&#x2F;apache2&#x2F;apache2.conf  Apache的全局配置文件</p>
+<p>&#x2F;etc&#x2F;apache2&#x2F;ports.conf  用于查看Apache2服务监听的端口号</p>
+<img src="/2024/06/02/%E8%A4%A5%E4%B8%80%E6%8A%8Actf%E7%B3%BB%E5%88%97%E4%B9%8B%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8Cssrf-me/2.png" class="">
       
        <hr><span style="font-style: italic;color: gray;"> 梦里小镇落雨，开花，起风，挂霜，甚至扬起烤红薯的香气，每个墙角都能听见人们的说笑声。 </span>
     </div>
