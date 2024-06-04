@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>关于页 | isum</title>
-  <meta name="keywords" content="">
-  <meta name="description" content="关于页 | isum">
+  <title>褥一把ctf系列之ssrf-攻击fastcgi、redis协议 | isum</title>
+  <meta name="keywords" content=" ssrf ">
+  <meta name="description" content="褥一把ctf系列之ssrf-攻击fastcgi、redis协议 | isum">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="还没有">
 <meta property="og:type" content="website">
@@ -279,19 +279,34 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="page-" class="article article-type-page" itemscope itemprop="blogPost">
+        <article id="post-褥一把ctf系列之ssrf-攻击fastcgi、redis协议" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">关于页</h1>
+        <h1 class="article-title">褥一把ctf系列之ssrf-攻击fastcgi、redis协议</h1>
     
     <div class="article-meta">
         
         
         
+        <span class="book">
+            <i class="iconfont icon-category"></i>
+            
+            
+            <a  data-rel="刷题o比赛">刷题o比赛</a>
+            
+        </span>
+        
+        
+        <span class="tag">
+            <i class="iconfont icon-tag"></i>
+            
+            <a class="color5">ssrf</a>
+            
+        </span>
         
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2024-05-29 22:00:20'>2024-04-27 07:27</time>
+            发布时间 : <time class="date" title='最后更新: 2024-06-04 09:11:28'>2024-06-04 09:04</time>
         
     </div>
     <div class="article-meta">
@@ -324,7 +339,7 @@
     
     <div class="toc-ref">
     
-        
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93"><span class="toc-text">一、知识点总结</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -340,7 +355,34 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>还没有</p>
+        <img src="/2024/06/04/%E8%A4%A5%E4%B8%80%E6%8A%8Actf%E7%B3%BB%E5%88%97%E4%B9%8Bssrf-%E6%94%BB%E5%87%BBfastcgi%E3%80%81redis%E5%8D%8F%E8%AE%AE/1.png" class="">
+
+<h3 id="一、知识点总结"><a href="#一、知识点总结" class="headerlink" title="一、知识点总结"></a>一、知识点总结</h3><p>1.关于ssrf使用的协议</p>
+<p>ssrf都只是<strong>访问发送请求</strong>而不执行(与文件包含不同)→所使用伪协议(有利于构造访问发送不同请求的伪协议)</p>
+<p>2.gopher协议：gopher协议在ssrf的利用中一般用来攻击<strong>redis，mysql，fastcgi，smtp</strong>等服务。</p>
+<p><strong>各服务攻击演示</strong>：<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_50854662/article/details/129180268">SSRF利用协议中的万金油——Gopher_dict协议-CSDN博客</a></p>
+<p>3.fastcgi服务攻击：PHP-FPM未授权访问漏洞→任意代码执行</p>
+<p>攻击fastcgi原理：<a target="_blank" rel="noopener" href="https://blog.csdn.net/mysteryflower/article/details/94386461">Fastcgi协议分析 &amp;&amp; PHP-FPM未授权访问漏洞 &amp;&amp; Exp编写_flower未授权访问-CSDN博客</a></p>
+<p>(摘抄)</p>
+<p>fastcgi的record也有头和体两部分</p>
+<p>头部会指定一个type值，当后端语言接收到一个type为4的record后，就会把这个record的body按照对应的结构解析成key-value对，这就是环境变量。</p>
+<p>这个数组其实就是PHP中$_SERVER数组的一部分，也就是PHP里的环境变量。但环境变量的作用不仅是填充$_SERVER数组，也是告诉fpm：“我要执行哪个PHP文件”。</p>
+<p>PHP-FPM拿到fastcgi的数据包后，进行解析，得到上述这些环境变量。然后，执行SCRIPT_FILENAME的值指向的PHP文件，也就是&#x2F;var&#x2F;www&#x2F;html&#x2F;index.php。</p>
+<p>PHP-FPM默认监听9000端口，如果这个端口暴露在公网，则我们可以自己构造fastcgi协议，和fpm进行通信。</p>
+<p>‘PHP_VALUE’: ‘auto_prepend_file &#x3D; php:&#x2F;&#x2F;input’,</p>
+<p>‘PHP_ADMIN_VALUE’: ‘allow_url_include &#x3D; On’</p>
+<p>利用auto_prepend_file&#x3D;php:&#x2F;&#x2F;input，body里放入php代码就可以执行了</p>
+<p>需要一个已有的php文件来承载prepend的代码：通常使用源安装php的时候，服务器上都会附带一些php后缀的文件，这就给我们提供了一条思路，假设我们爆破不出来目标环境的web目录，我们可以找找默认源安装后可能存在的php文件，比如&#x2F;usr&#x2F;local&#x2F;lib&#x2F;php&#x2F;PEAR.php。</p>
+<img src="/2024/06/04/%E8%A4%A5%E4%B8%80%E6%8A%8Actf%E7%B3%BB%E5%88%97%E4%B9%8Bssrf-%E6%94%BB%E5%87%BBfastcgi%E3%80%81redis%E5%8D%8F%E8%AE%AE/2.png" class="">
+
+
+<p>4.返回<strong>响应数据包</strong></p>
+<img src="/2024/06/04/%E8%A4%A5%E4%B8%80%E6%8A%8Actf%E7%B3%BB%E5%88%97%E4%B9%8Bssrf-%E6%94%BB%E5%87%BBfastcgi%E3%80%81redis%E5%8D%8F%E8%AE%AE/3.png" class="">
+
+<p>5.redis服务攻击</p>
+<img src="/2024/06/04/%E8%A4%A5%E4%B8%80%E6%8A%8Actf%E7%B3%BB%E5%88%97%E4%B9%8Bssrf-%E6%94%BB%E5%87%BBfastcgi%E3%80%81redis%E5%8D%8F%E8%AE%AE/4.png" class="">
+
+<p> 虽然页面显示504，但是shell.php已经写入了。</p>
 
       
        <hr><span style="font-style: italic;color: gray;"> 梦里小镇落雨，开花，起风，挂霜，甚至扬起烤红薯的香气，每个墙角都能听见人们的说笑声。 </span>

